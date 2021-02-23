@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "tropics:dominus_ore"
+  },
+  "result": "tropics:dominus_ingot",
+  "experience": 2.0,
+  "cookingtime": 100
+}

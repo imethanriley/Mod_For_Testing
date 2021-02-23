@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"III",
+		"III",
+		"III"		
+	],
+	
+	"key":
+	{
+		"I": { "item": "tropics:volcanic_ingot"	}
+	},
+	
+	"result":
+	{
+		"item": "tropics:volcanic_block",
+		"count": 1
+	}
+}
