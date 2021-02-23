@@ -27,6 +27,7 @@ public class BiomeMaker {
 	      
 	      //Structures
 	      GENERATION_SETTINGS.withStructure(StructureFeatures.RUINED_PORTAL);
+	      GENERATION_SETTINGS.withStructure(StructureFeatures.VILLAGE_PLAINS);
 	      
 	      //Features
 	      DefaultBiomeFeatures.withStrongholdAndMineshaft(GENERATION_SETTINGS);

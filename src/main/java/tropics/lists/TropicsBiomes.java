@@ -14,14 +14,15 @@ import tropics.Tropics;
 import tropics.world.biomes.BiomeMaker;
 
 public class TropicsBiomes {
+	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, Tropics.MOD_ID);
 	
 	public static final RegistryKey<Biome> TROPICAL_ISLAND_KEY = makeKey("tropical_island");
-	
-	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, Tropics.MOD_ID);
 	public static RegistryObject<Biome> TROPICAL_ISLAND = BIOMES.register("tropical_island", () -> BiomeMaker.makeTropicalIslandBiome(0.2f, 0.3f));
 	
+	public static int tropicalIslandWeight = 1000;
+	
 	public static void registerBiomes() {
-        registerBiome(BiomeManager.BiomeType.WARM, TROPICAL_ISLAND, 5000);
+        registerBiome(BiomeManager.BiomeType.WARM, TROPICAL_ISLAND, tropicalIslandWeight);
         BiomeDictionary.addTypes(getBiomeKey(TROPICAL_ISLAND.getId()), Type.LUSH, Type.PLAINS, Type.OVERWORLD);
 	}
 	
