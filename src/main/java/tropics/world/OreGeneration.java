@@ -1,10 +1,6 @@
 package tropics.world;
-/*
-
-//BROKEN WITH BACKDATED MAPPINGS
 
 import java.util.ArrayList;
-
 
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
@@ -83,4 +79,3 @@ public class OreGeneration
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Tropics.MOD_ID + ":" + name, configuredFeature);
     }
 }
-*/
