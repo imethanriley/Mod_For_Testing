@@ -25,7 +25,6 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import tropics.entity.ai.TropicsBirdFly;
 import tropics.entity.type.TropicsTinyBird;
 
 public class RavenEntity extends TropicsTinyBird {

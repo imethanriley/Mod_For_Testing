@@ -116,8 +116,8 @@ public class RavenModel extends SegmentedModel<RavenEntity> {
         if (entity.isOnGround()) {
             rightleg.rotationPointY = 21;
             leftleg.rotationPointY = 21;
-            rightarm.rotateAngleZ = -0.15f;
-            leftarm.rotateAngleZ = 0.15f;
+            rightarm.rotateAngleZ = 0.05f;
+            leftarm.rotateAngleZ = -0.05f;
         } else {
             rightleg.rotationPointY = 20F;
             leftleg.rotationPointY = 20F;

@@ -21,11 +21,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3i;
+//import net.minecraft.util.math.MathHelper;
+//import net.minecraft.util.math.vector.Vector3d;
+//import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.World;
-import tropics.entity.ai.TropicsBirdFly;
+//import tropics.entity.ai.TropicsBirdFly;
 
 public class TropicsTinyBird extends TropicsBird {
 
@@ -33,8 +33,8 @@ public class TropicsTinyBird extends TropicsBird {
 	private static final DataParameter<Byte> DATA_BIRDFLAGS = EntityDataManager.createKey(TropicsTinyBird.class, DataSerializers.BYTE);
 
 	// [VanillaCopy] EntityBat field
-	private BlockPos spawnPosition;
-	private int currentFlightTime;
+	//private BlockPos spawnPosition;
+	//private int currentFlightTime;
 
 	public TropicsTinyBird(EntityType<? extends TropicsTinyBird> type, World world) {
 		super(type, world);
