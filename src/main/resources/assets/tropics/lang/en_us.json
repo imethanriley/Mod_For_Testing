@@ -20,6 +20,9 @@
 	"item.tropics.angler_fish_spawn_egg": "Angler Fish Spawn Egg",
 	"entity.tropics.angler_fish": "Angler Fish",
 	
+	"item.tropics.raven_spawn_egg": "Raven Spawn Egg",
+	"entity.tropics.raven": "Raven",
+	
 	"biome.tropics.tropical_island": "Tropical Island",
 	
 	"itemGroup.tropics": "Project Tropics"

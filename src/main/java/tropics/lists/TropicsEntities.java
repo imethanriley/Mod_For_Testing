@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import tropics.Tropics;
 import tropics.entity.AnglerFishEntity;
+import tropics.entity.RavenEntity;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID)
 public class TropicsEntities {
@@ -16,7 +17,7 @@ public class TropicsEntities {
 	
 	//Passive Mobs
 	public static final EntityType<AnglerFishEntity> ANGLER_FISH = EntityType.Builder.<AnglerFishEntity>create(AnglerFishEntity::new, EntityClassification.WATER_CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":angler_fish");
-	
+	public static final EntityType<RavenEntity> RAVEN = EntityType.Builder.<RavenEntity>create(RavenEntity::new, EntityClassification.CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":raven");
 	//Projectiles
 	
 	
@@ -26,8 +27,12 @@ public class TropicsEntities {
 		IForgeRegistry<EntityType<?>> reg = event.getRegistry();
 		
 		ANGLER_FISH.setRegistryName(Tropics.MOD_ID, "angler_fish");
+		RAVEN.setRegistryName(Tropics.MOD_ID, "raven");
+		
 		reg.register(ANGLER_FISH);
+		reg.register(RAVEN);
 		
 		GlobalEntityTypeAttributes.put(ANGLER_FISH, AnglerFishEntity.getAttributes().create());
+		GlobalEntityTypeAttributes.put(RAVEN, RavenEntity.getAttributes().create());
 	}
 }

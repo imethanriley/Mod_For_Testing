@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import tropics.lists.TropicsEntities;
 import tropics.renderer.AnglerFishRenderer;
+import tropics.renderer.RavenRenderer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID, value = Dist.CLIENT)
 public class ClientRegistration {
@@ -16,6 +17,7 @@ public class ClientRegistration {
 	{		
 		//Mob Entities
 		RenderingRegistry.registerEntityRenderingHandler(TropicsEntities.ANGLER_FISH, (manager) -> new AnglerFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(TropicsEntities.RAVEN, (manager) -> new RavenRenderer(manager));
 		
 		//Misc Entities
 	}

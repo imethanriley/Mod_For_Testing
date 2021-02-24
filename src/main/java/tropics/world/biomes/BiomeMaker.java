@@ -22,8 +22,8 @@ import tropics.lists.TropicsEntities;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID)
 public class BiomeMaker {
 	public static Biome makeTropicalIslandBiome(float depth, float scale) {
-	      MobSpawnInfo.Builder SPAWNER = (new MobSpawnInfo.Builder()).withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
-	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244173_e);
+	      MobSpawnInfo.Builder SPAWN_SETTINGS = (new MobSpawnInfo.Builder()).withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
+	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244169_a);
 	      
 	      //Structures
 	      GENERATION_SETTINGS.withStructure(StructureFeatures.RUINED_PORTAL);
@@ -42,7 +42,10 @@ public class BiomeMaker {
 	      DefaultBiomeFeatures.withSugarCaneAndPumpkins(GENERATION_SETTINGS);
 	      DefaultBiomeFeatures.withLavaAndWaterSprings(GENERATION_SETTINGS);
 	      DefaultBiomeFeatures.withFrozenTopLayer(GENERATION_SETTINGS);
-	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).category(Biome.Category.PLAINS).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).setEffects((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(0.9F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(SPAWNER.copy()).withGenerationSettings(GENERATION_SETTINGS.build()).build();
+	      
+	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 1000, 100, 200));
+	      
+	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).category(Biome.Category.PLAINS).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).setEffects((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(0.9F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(SPAWN_SETTINGS.copy()).withGenerationSettings(GENERATION_SETTINGS.build()).build();
     }
 	
 	private static int getSkyColorWithTemperatureModifier(float temperature) {

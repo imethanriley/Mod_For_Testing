@@ -41,6 +41,7 @@ public class TropicsItems {
 	
 	//Spawn Eggs
 	public static Item angler_fish_spawn_egg;
+	public static Item raven_spawn_egg;
 	
 	@SubscribeEvent
 	public static void RegisterItems(final RegistryEvent.Register<Item> event)
@@ -74,6 +75,9 @@ public class TropicsItems {
 		//Spawn Eggs
 		TropicsItems.angler_fish_spawn_egg = new SpawnEggItem(TropicsEntities.ANGLER_FISH, 0xFFFFFF, 0x000FFF, (new Item.Properties()).group(Tropics.TROPICS)).setRegistryName(Tropics.location("angler_fish_spawn_egg"));
 		reg.register(TropicsItems.angler_fish_spawn_egg);
+		
+		TropicsItems.raven_spawn_egg = new SpawnEggItem(TropicsEntities.RAVEN, 0xFFFFFF, 0x000FFF, (new Item.Properties()).group(Tropics.TROPICS)).setRegistryName(Tropics.location("raven_spawn_egg"));
+		reg.register(TropicsItems.raven_spawn_egg);
 		
 		Tropics.LOGGER.info("Items registered");
 	}
