@@ -1,4 +1,4 @@
-package tropics.lists;
+package tropics.init;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;

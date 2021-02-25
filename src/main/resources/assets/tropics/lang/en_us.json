@@ -23,6 +23,10 @@
 	"item.tropics.raven_spawn_egg": "Raven Spawn Egg",
 	"entity.tropics.raven": "Raven",
 	
+	"item.tropics.vulcan_spawn_egg": "Vulcan Spawn Egg",
+	"entity.tropics.vulcan": "Vulcan",
+	"entity.tropics.mine": "Test Boss Mine",
+	
 	"biome.tropics.tropical_island": "Tropical Island",
 	
 	"itemGroup.tropics": "Project Tropics"

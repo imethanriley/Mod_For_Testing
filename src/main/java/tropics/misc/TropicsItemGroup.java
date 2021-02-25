@@ -3,7 +3,7 @@ package tropics.misc;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import tropics.lists.TropicsBlocks;
+import tropics.init.TropicsBlocks;
 
 public class TropicsItemGroup extends ItemGroup 
 {

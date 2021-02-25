@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import tropics.Tropics;
-import tropics.lists.TropicsBlocks;
+import tropics.init.TropicsBlocks;
 
 @Mod.EventBusSubscriber
 public class OreGeneration 

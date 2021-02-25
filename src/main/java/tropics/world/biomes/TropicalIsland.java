@@ -19,7 +19,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import tropics.lists.TropicsEntities;
+import tropics.init.TropicsEntities;
 import tropics.misc.BoimeGenHelper;
 
 @BoimeGenHelper.ModElement.Tag

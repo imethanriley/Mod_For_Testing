@@ -1,4 +1,4 @@
-package tropics.lists;
+package tropics.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
