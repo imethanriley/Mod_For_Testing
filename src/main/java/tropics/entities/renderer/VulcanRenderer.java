@@ -1,4 +1,4 @@
-package tropics.renderer;
+package tropics.entities.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -7,7 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import tropics.Tropics;
-import tropics.entity.VulcanEntity;
+import tropics.entities.entity.VulcanEntity;
+import tropics.entities.model.VulcanModel;
 
 @OnlyIn(Dist.CLIENT)
 public class VulcanRenderer extends MobRenderer<VulcanEntity, VulcanModel<VulcanEntity>> {

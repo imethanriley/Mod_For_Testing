@@ -3,71 +3,62 @@ package tropics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import tropics.misc.BoimeGenHelper;
-import tropics.misc.TropicsItemGroup;
-import tropics.world.OreGeneration;
+import tropics.init.TropicsBlocks;
+import tropics.world.generation.BiomeGeneration;
+import tropics.world.generation.OreGeneration;
 
 @Mod("tropics")
 public class Tropics 
 {
 	public static Tropics instance;
 	public static final String MOD_ID = "tropics";
-	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-	public static final ItemGroup TROPICS = new TropicsItemGroup();	
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);	
 
-	public BoimeGenHelper elements;
+	public BiomeGeneration elements;
 	
 	public Tropics() 
 	{		
-		elements = new BoimeGenHelper();
+		elements = new BiomeGeneration();
+		
 		instance = this;
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientLoad);
-		MinecraftForge.EVENT_BUS.register(new TropicsModFMLBusEvents(this));
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	
 	private void setup(final FMLCommonSetupEvent event)
 	{
+		LOGGER.info("** BEGINNING SETUP METHOD **");
+		
+		//Biome World Generation
+		elements.getElements().forEach(element -> element.init(event));
+		LOGGER.info("-- BIOMES GENERATED --");
+		
+		//Custom Ore Generation
 		OreGeneration.registerOre();
-		LOGGER.info("Setup method registered");
+		LOGGER.info("-- ORES GENERATED --");
+		
+		
+		LOGGER.info("** COMPLETED SETUP METHOD **");
 	}
+	
+	public static final ItemGroup TROPICS = new ItemGroup("tropicsTab") {
+        @Override
+        public ItemStack createIcon() {
+        	return new ItemStack(Item.BLOCK_TO_ITEM.get(TropicsBlocks.dominus_ore));
+        }
+    };
 	
 	public static ResourceLocation location(String name) {
 		return new ResourceLocation(MOD_ID, name);
-	}
-	
-	//Biome World Generation Functions
-	private void init(FMLCommonSetupEvent event) {
-		elements.getElements().forEach(element -> element.init(event));
-	}
-
-	public void clientLoad(FMLClientSetupEvent event) {
-		elements.getElements().forEach(element -> element.clientLoad(event));
-	}
-	
-	private static class TropicsModFMLBusEvents {
-		private final Tropics parent;
-		TropicsModFMLBusEvents(Tropics parent) {
-			this.parent = parent;
-		}
-
-		@SubscribeEvent
-		public void serverLoad(FMLServerStartingEvent event) {
-			this.parent.elements.getElements().forEach(element -> element.serverLoad(event));
-		}
 	}
 
 }

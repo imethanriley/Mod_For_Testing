@@ -1,4 +1,4 @@
-package tropics.renderer;
+package tropics.entities.model;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import tropics.entity.RavenEntity;
+import tropics.entities.entity.RavenEntity;
 
 public class RavenModel extends SegmentedModel<RavenEntity> {
 	private final ModelRenderer head;

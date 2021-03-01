@@ -1,20 +1,21 @@
-package tropics;
+package tropics.entities;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import tropics.Tropics;
+import tropics.entities.renderer.AnglerFishRenderer;
+import tropics.entities.renderer.MineRenderer;
+import tropics.entities.renderer.RavenRenderer;
+import tropics.entities.renderer.VulcanRenderer;
 import tropics.init.TropicsEntities;
-import tropics.renderer.AnglerFishRenderer;
-import tropics.renderer.MineRenderer;
-import tropics.renderer.RavenRenderer;
-import tropics.renderer.VulcanRenderer;
-import tropics.renderer.VulcanRenderer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID, value = Dist.CLIENT)
 public class ClientRegistration {
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SubscribeEvent
 	public static void clientRegistration(final FMLClientSetupEvent event)
 	{	

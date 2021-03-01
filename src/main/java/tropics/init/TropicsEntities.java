@@ -7,11 +7,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import tropics.Tropics;
-import tropics.entity.AnglerFishEntity;
-import tropics.entity.MineEntity;
-import tropics.entity.RavenEntity;
-import tropics.entity.VulcanEntity;
-import tropics.entity.VulcanEntity;
+import tropics.entities.entity.AnglerFishEntity;
+import tropics.entities.entity.MineEntity;
+import tropics.entities.entity.RavenEntity;
+import tropics.entities.entity.VulcanEntity;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID)
 public class TropicsEntities {

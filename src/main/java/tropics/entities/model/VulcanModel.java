@@ -1,4 +1,4 @@
-package tropics.renderer;
+package tropics.entities.model;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
-import tropics.entity.VulcanEntity;
+import tropics.entities.entity.VulcanEntity;
 
 public class VulcanModel<T extends VulcanEntity> extends SegmentedModel<T> {
 	private final ModelRenderer body;

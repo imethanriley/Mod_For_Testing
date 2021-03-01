@@ -1,4 +1,4 @@
-package tropics.renderer;
+package tropics.entities.model;
 
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import tropics.entity.AnglerFishEntity;
+import tropics.entities.entity.AnglerFishEntity;
 
 public class AnglerFishModel extends EntityModel<AnglerFishEntity> {
 	private final ModelRenderer body;

@@ -1,4 +1,4 @@
-package tropics.entity;
+package tropics.entities.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,4 +1,4 @@
-package tropics.entity;
+package tropics.entities.entity;
 import java.util.Random;
 
 import net.minecraft.block.BlockState;

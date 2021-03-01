@@ -1,4 +1,4 @@
-package tropics.entity.type;
+package tropics.entities.misc.type;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,6 @@ import net.minecraft.util.math.BlockPos;
 //import net.minecraft.util.math.vector.Vector3d;
 //import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.World;
-//import tropics.entity.ai.TropicsBirdFly;
 
 public class TropicsTinyBird extends TropicsBird {
 

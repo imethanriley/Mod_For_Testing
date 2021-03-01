@@ -1,4 +1,4 @@
-package tropics.entity.type;
+package tropics.entities.misc.type;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;

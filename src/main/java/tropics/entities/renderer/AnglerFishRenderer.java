@@ -1,10 +1,11 @@
-package tropics.renderer;
+package tropics.entities.renderer;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import tropics.Tropics;
-import tropics.entity.AnglerFishEntity;
+import tropics.entities.entity.AnglerFishEntity;
+import tropics.entities.model.AnglerFishModel;
 
 public class AnglerFishRenderer extends MobRenderer<AnglerFishEntity, AnglerFishModel> {
 	private static final ResourceLocation TEXTURE = Tropics.location("textures/entity/angler_fish.png");

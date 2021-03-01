@@ -1,4 +1,4 @@
-package tropics.world;
+package tropics.world.generation;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class OreGeneration
         
       //Nether Ore Register
     	NETHER_ORES.add(register("test_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NETHERRACK, TropicsBlocks.dominus_ore.getBlock().getDefaultState(), 12))
+                OreFeatureConfig.FillerBlockType.NETHERRACK, TropicsBlocks.dominus_ore.getBlock().getDefaultState(), 12)) //Vein Size
                 .range(128).square() //Spawn height start
                 .func_242731_b(64))); //Chunk spawn frequency
  

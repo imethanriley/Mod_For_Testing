@@ -23,9 +23,9 @@ import tropics.init.TropicsEntities;
 import tropics.world.generation.BiomeGeneration;
 
 @BiomeGeneration.TropicsBiomes.NewBiome
-public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
-	public TropicalIsland(BiomeGeneration instance) {
-		super(instance, 1);
+public class TestBiome extends BiomeGeneration.TropicsBiomes {
+	public TestBiome(BiomeGeneration instance) {
+		super(instance, 2);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new BiomeRegisterHandler());
 	}
 
@@ -35,13 +35,13 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
 		@SubscribeEvent
 		public void registerBiomes(RegistryEvent.Register<Biome> event) {
 			biome = makeTropicalIslandBiome(0.2f, 0.3f);
-			event.getRegistry().register(biome.setRegistryName("tropics:tropical_island"));
+			event.getRegistry().register(biome.setRegistryName("tropics:test_biome"));
 		}
 	}
 	
 	public static Biome makeTropicalIslandBiome(float depth, float scale) {
 	      MobSpawnInfo.Builder SPAWN_SETTINGS = (new MobSpawnInfo.Builder()).withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
-	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244169_a);
+	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244181_m);
 	      
 	      //Structures
 	      GENERATION_SETTINGS.withStructure(StructureFeatures.RUINED_PORTAL);

@@ -1,4 +1,4 @@
-package tropics.entity;
+package tropics.entities.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
