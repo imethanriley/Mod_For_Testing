@@ -4,7 +4,7 @@ loaderVersion="[31,)" #mandatory
 
 [[mods]] #mandatory
 modId="tropics" #mandatory
-version="0.1" #mandatory
+version="0.2" #mandatory
 displayName="Tropics" #mandatory
 authors="Ethan Neidert"
 description='''

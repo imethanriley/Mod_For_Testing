@@ -7,10 +7,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import tropics.Tropics;
-import tropics.entities.entity.AnglerFishEntity;
-import tropics.entities.entity.MineEntity;
-import tropics.entities.entity.RavenEntity;
-import tropics.entities.entity.VulcanEntity;
+import tropics.entities.entity.boss.MineEntity;
+import tropics.entities.entity.boss.VulcanEntity;
+import tropics.entities.entity.passive.AnglerFishEntity;
+import tropics.entities.entity.passive.PoisonDartFrogEntity;
+import tropics.entities.entity.passive.RavenEntity;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Tropics.MOD_ID)
 public class TropicsEntities {
@@ -21,6 +22,7 @@ public class TropicsEntities {
 	//Passive Mobs
 	public static final EntityType<AnglerFishEntity> ANGLER_FISH = EntityType.Builder.<AnglerFishEntity>create(AnglerFishEntity::new, EntityClassification.WATER_CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":angler_fish");
 	public static final EntityType<RavenEntity> RAVEN = EntityType.Builder.<RavenEntity>create(RavenEntity::new, EntityClassification.CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":raven");
+	public static final EntityType<PoisonDartFrogEntity> POISON_DART_FROG = EntityType.Builder.<PoisonDartFrogEntity>create(PoisonDartFrogEntity::new, EntityClassification.CREATURE).size(0.45f, 0.45f).build(Tropics.MOD_ID + ":poison_dart_frog");
 	
 	//Projectiles
 	public static final EntityType<MineEntity> MINE = EntityType.Builder.<MineEntity>create(MineEntity::new, EntityClassification.MISC).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":mine");
@@ -33,16 +35,19 @@ public class TropicsEntities {
 		VULCAN.setRegistryName(Tropics.MOD_ID, "vulcan");
 		ANGLER_FISH.setRegistryName(Tropics.MOD_ID, "angler_fish");
 		RAVEN.setRegistryName(Tropics.MOD_ID, "raven");
+		POISON_DART_FROG.setRegistryName(Tropics.MOD_ID, "poison_dart_frog");
 		MINE.setRegistryName(Tropics.MOD_ID, "mine");
 		
 		reg.register(VULCAN);
 		reg.register(ANGLER_FISH);
 		reg.register(RAVEN);
+		reg.register(POISON_DART_FROG);
 		reg.register(MINE);
 		
-		GlobalEntityTypeAttributes.put(VULCAN, VulcanEntity.setCustomAttributes().create());
+		GlobalEntityTypeAttributes.put(VULCAN, VulcanEntity.getAttributes().create());
 		GlobalEntityTypeAttributes.put(ANGLER_FISH, AnglerFishEntity.getAttributes().create());
 		GlobalEntityTypeAttributes.put(RAVEN, RavenEntity.getAttributes().create());
+		GlobalEntityTypeAttributes.put(POISON_DART_FROG, PoisonDartFrogEntity.getAttributes().create());
 		
 	}
 }

@@ -43,6 +43,7 @@ public class TropicsItems {
 	public static Item angler_fish_spawn_egg;
 	public static Item raven_spawn_egg;
 	public static Item vulcan_spawn_egg;
+	public static Item poison_dart_frog_spawn_egg;
 	
 	@SubscribeEvent
 	public static void RegisterItems(final RegistryEvent.Register<Item> event)
@@ -82,6 +83,9 @@ public class TropicsItems {
 		
 		TropicsItems.vulcan_spawn_egg = new SpawnEggItem(TropicsEntities.VULCAN, 0xFFFFFF, 0x000FFF, (new Item.Properties()).group(Tropics.TROPICS)).setRegistryName(Tropics.location("vulcan_spawn_egg"));
 		reg.register(TropicsItems.vulcan_spawn_egg);
+		
+		TropicsItems.poison_dart_frog_spawn_egg = new SpawnEggItem(TropicsEntities.POISON_DART_FROG, 0xFFFFFF, 0x000FFF, (new Item.Properties()).group(Tropics.TROPICS)).setRegistryName(Tropics.location("poison_dart_frog_spawn_egg"));
+		reg.register(TropicsItems.poison_dart_frog_spawn_egg);
 		
 		Tropics.LOGGER.info("Items registered");
 	}

@@ -1,11 +1,11 @@
-package tropics.entities.model;
+package tropics.entities.model.boss;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import tropics.entities.entity.MineEntity;
+import tropics.entities.entity.boss.MineEntity;
 
 public class MineModel<T extends MineEntity> extends EntityModel<Entity> {
 	private final ModelRenderer mine;

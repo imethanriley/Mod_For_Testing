@@ -1,4 +1,4 @@
-package tropics.entities.entity;
+package tropics.entities.entity.boss;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

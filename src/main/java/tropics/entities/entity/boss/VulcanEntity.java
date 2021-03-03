@@ -1,4 +1,4 @@
-package tropics.entities.entity;
+package tropics.entities.entity.boss;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -49,8 +49,8 @@ public class VulcanEntity extends AbstractRaiderEntity {
 
     public VulcanEntity(EntityType<? extends VulcanEntity> type, World worldIn) {
         super(type, worldIn);
-        this.lookController = new GolemLookController(this);
-        this.moveController = new GolemMovementController(this);
+        this.lookController = new VulcanLookController(this);
+        this.moveController = new VulcanMovementController(this);
         this.stepHeight = 1.0F;
         this.experienceValue = 40;
         this.mineAttackCooldown = 10 * 20;
@@ -73,7 +73,7 @@ public class VulcanEntity extends AbstractRaiderEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(4, new VulcanEntity.AttackGoal());
-        this.goalSelector.addGoal(5, new VulcanEntity.SummonRedstoneMinesGoal());
+        this.goalSelector.addGoal(5, new VulcanEntity.SummonMinesGoal());
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -143,7 +143,7 @@ public class VulcanEntity extends AbstractRaiderEntity {
     }
 
 
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+    public static AttributeModifierMap.MutableAttribute getAttributes() {
         return MonsterEntity.func_234295_eP_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 200.0D) // 2x Golem Health
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
@@ -219,20 +219,20 @@ public class VulcanEntity extends AbstractRaiderEntity {
     }
 
     public boolean isNotColliding(IWorldReader worldIn) {
-        BlockPos golemPos = this.getPosition();
-        BlockPos posBeneathGolem = golemPos.down();
-        BlockState blockstateBeneathGolem = worldIn.getBlockState(posBeneathGolem);
-        if (!blockstateBeneathGolem.canSpawnMobs(worldIn, posBeneathGolem, this)) {
+        BlockPos vulcanPos = this.getPosition();
+        BlockPos posBeneathVulcan = vulcanPos.down();
+        BlockState blockstateBeneathVulcan = worldIn.getBlockState(posBeneathVulcan);
+        if (!blockstateBeneathVulcan.canSpawnMobs(worldIn, posBeneathVulcan, this)) {
             return false;
         } else {
             for(int i = 1; i < 4; ++i) {
-                BlockPos posAboveGolem = golemPos.up(i);
-                BlockState blockstateAboveGolem = worldIn.getBlockState(posAboveGolem);
+                BlockPos posAboveVulcan = vulcanPos.up(i);
+                BlockState blockstateAboveVulcan = worldIn.getBlockState(posAboveVulcan);
                 if (!WorldEntitySpawner
                         .func_234968_a_(worldIn,
-                                posAboveGolem,
-                                blockstateAboveGolem,
-                                blockstateAboveGolem.getFluidState(),
+                        		posAboveVulcan,
+                        		blockstateAboveVulcan,
+                        		blockstateAboveVulcan.getFluidState(),
                                 TropicsEntities.VULCAN)) {
                     return false;
                 }
@@ -240,8 +240,8 @@ public class VulcanEntity extends AbstractRaiderEntity {
 
             return WorldEntitySpawner
                     .func_234968_a_(worldIn,
-                            golemPos,
-                            worldIn.getBlockState(golemPos),
+                    		vulcanPos,
+                            worldIn.getBlockState(vulcanPos),
                             Fluids.EMPTY.getDefaultState(),
                             TropicsEntities.VULCAN)
                     && worldIn.checkNoEntityCollision(this);
@@ -319,31 +319,31 @@ public class VulcanEntity extends AbstractRaiderEntity {
         }
     }
 
-    static class GolemLookController extends LookController {
-        VulcanEntity redstoneGolemEntity;
-        GolemLookController(VulcanEntity mob) {
+    static class VulcanLookController extends LookController {
+        VulcanEntity vulcanEntity;
+        VulcanLookController(VulcanEntity mob) {
             super(mob);
-            this.redstoneGolemEntity = mob;
+            this.vulcanEntity = mob;
         }
 
         @Override
         public void tick() {
-            if(!this.redstoneGolemEntity.isSummoningMines()){
+            if(!this.vulcanEntity.isSummoningMines()){
                 super.tick();
             }
         }
     }
 
-    static class GolemMovementController extends MovementController{
-        VulcanEntity redstoneGolemEntity;
-        GolemMovementController(VulcanEntity mob) {
+    static class VulcanMovementController extends MovementController{
+        VulcanEntity vulcanEntity;
+        VulcanMovementController(VulcanEntity mob) {
             super(mob);
-            this.redstoneGolemEntity = mob;
+            this.vulcanEntity = mob;
         }
 
         @Override
         public void tick() {
-            if(!this.redstoneGolemEntity.isSummoningMines()){
+            if(!this.vulcanEntity.isSummoningMines()){
                 super.tick();
             }
         }
@@ -389,12 +389,12 @@ public class VulcanEntity extends AbstractRaiderEntity {
 
     // MINES
 
-    class SummonRedstoneMinesGoal extends Goal{
+    class SummonMinesGoal extends Goal{
         static final int WARM_UP_TICKS = 5 * 20;
         static final int MINE_ATTACK_COOLDOWN = 10 * 20;
         private int warmUpTicks;
 
-        SummonRedstoneMinesGoal(){
+        SummonMinesGoal(){
             this.warmUpTicks = WARM_UP_TICKS;
         }
 
@@ -425,12 +425,12 @@ public class VulcanEntity extends AbstractRaiderEntity {
                 BlockPos centerPos = VulcanEntity.this.getPosition();
                 for(int i = 0; i < 14; i++){
                     double randomNearbyX = centerPos.getX() + (VulcanEntity.this.rand.nextGaussian() * 10.0D);
-                    //double randomNearbyY = RedstoneGolemEntity.this.getPosY() + (double)(RedstoneGolemEntity.this.rand.nextInt(4) - 2);
+                    //double randomNearbyY = VulcanEntity.this.getPosY() + (double)(VulcanEntity.this.rand.nextInt(4) - 2);
                     double randomNearbyZ = centerPos.getZ() + (VulcanEntity.this.rand.nextGaussian() * 10.0D);
                     BlockPos randomBlockPos = new BlockPos(randomNearbyX, centerPos.getY(), randomNearbyZ);
                     if(canAllowBlockEntitySpawn(VulcanEntity.this, randomBlockPos)){
-                        MineEntity redstoneMineEntity = new MineEntity(VulcanEntity.this.world, randomBlockPos.getX(), randomBlockPos.getY(), randomBlockPos.getZ(), VulcanEntity.this);
-                        VulcanEntity.this.world.addEntity(redstoneMineEntity);
+                        MineEntity mineEntity = new MineEntity(VulcanEntity.this.world, randomBlockPos.getX(), randomBlockPos.getY(), randomBlockPos.getZ(), VulcanEntity.this);
+                        VulcanEntity.this.world.addEntity(mineEntity);
                     }
                 }
             }

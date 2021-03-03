@@ -1,4 +1,4 @@
-package tropics.entities.renderer;
+package tropics.entities.renderer.boss;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import tropics.Tropics;
-import tropics.entities.entity.VulcanEntity;
-import tropics.entities.model.VulcanModel;
+import tropics.entities.entity.boss.VulcanEntity;
+import tropics.entities.model.boss.VulcanModel;
 
 @OnlyIn(Dist.CLIENT)
 public class VulcanRenderer extends MobRenderer<VulcanEntity, VulcanModel<VulcanEntity>> {
@@ -27,9 +27,6 @@ public class VulcanRenderer extends MobRenderer<VulcanEntity, VulcanModel<Vulcan
       super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
    }
 
-   /**
-    * Returns the location of an entity's texture.
-    */
    public ResourceLocation getEntityTexture(VulcanEntity entity) {
       return TEXTURE;
    }

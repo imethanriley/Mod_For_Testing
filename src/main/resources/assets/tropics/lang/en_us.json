@@ -23,6 +23,9 @@
 	"item.tropics.raven_spawn_egg": "Raven Spawn Egg",
 	"entity.tropics.raven": "Raven",
 	
+	"item.tropics.poison_dart_frog_spawn_egg": "Poison Dart Frog Spawn Egg",
+	"entity.tropics.poison_dart_frog": "Poison Dart Frog",
+	
 	"item.tropics.vulcan_spawn_egg": "Vulcan Spawn Egg",
 	"entity.tropics.vulcan": "Vulcan",
 	"entity.tropics.mine": "Test Boss Mine",

@@ -1,7 +1,7 @@
-package tropics.entities.misc.ai;
+package tropics.entities.xtra.ai;
 
 import net.minecraft.entity.ai.goal.Goal;
-import tropics.entities.misc.type.TropicsTinyBird;
+import tropics.entities.xtra.type.TropicsTinyBird;
 
 import java.util.EnumSet;
 

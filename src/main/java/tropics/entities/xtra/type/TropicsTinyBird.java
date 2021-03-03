@@ -1,4 +1,4 @@
-package tropics.entities.misc.type;
+package tropics.entities.xtra.type;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
