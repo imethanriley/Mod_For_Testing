@@ -23,7 +23,8 @@ import tropics.init.TropicsEntities;
 import tropics.world.generation.BiomeGeneration;
 
 @BiomeGeneration.TropicsBiomes.NewBiome
-public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
+public class TropicalIsland extends BiomeGeneration.TropicsBiomes 
+{
 	public TropicalIsland(BiomeGeneration instance) {
 		super(instance, 1);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new BiomeRegisterHandler());
@@ -40,8 +41,8 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
 	}
 	
 	public static Biome makeTropicalIslandBiome(float depth, float scale) {
-	      MobSpawnInfo.Builder SPAWN_SETTINGS = (new MobSpawnInfo.Builder()).withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
-	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244179_k);
+	      MobSpawnInfo.Builder SPAWN_SETTINGS = (new MobSpawnInfo.Builder());
+	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244169_a);
 	      
 	      //Structures
 	      GENERATION_SETTINGS.withStructure(StructureFeatures.RUINED_PORTAL);
@@ -58,8 +59,9 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
 	      DefaultBiomeFeatures.withMushroomBiomeVegetation(GENERATION_SETTINGS);
 	      DefaultBiomeFeatures.withLavaAndWaterSprings(GENERATION_SETTINGS);
 	      
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 100, 200));
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 1000, 100, 200));
+	      SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
+	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 2, 6));
+	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 20, 4, 8));
 	      
 	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).setEffects((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(0.9F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(SPAWN_SETTINGS.copy()).withGenerationSettings(GENERATION_SETTINGS.build()).build();
   }
@@ -74,7 +76,7 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes {
 	public void init(FMLCommonSetupEvent event) {
 		BiomeDictionary.addTypes(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, WorldGenRegistries.BIOME.getKey(biome)), BiomeDictionary.Type.MUSHROOM);
 		BiomeManager.addBiome(BiomeManager.BiomeType.WARM,
-				new BiomeManager.BiomeEntry(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, WorldGenRegistries.BIOME.getKey(biome)), 20));
+				new BiomeManager.BiomeEntry(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, WorldGenRegistries.BIOME.getKey(biome)), 500));
 	}
 	
 }

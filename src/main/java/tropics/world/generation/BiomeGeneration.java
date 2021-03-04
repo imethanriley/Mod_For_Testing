@@ -45,7 +45,7 @@ public class BiomeGeneration {
 		biomes.forEach(BiomeGeneration.TropicsBiomes::initBiomes);
 	}
 	
-	public List<TropicsBiomes> getElements() {
+	public List<TropicsBiomes> getBiomes() {
 		return biomes;
 	}
 	

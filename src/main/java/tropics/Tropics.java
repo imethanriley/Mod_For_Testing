@@ -22,11 +22,11 @@ public class Tropics
 	public static final String MOD_ID = "tropics";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);	
 
-	public BiomeGeneration elements;
+	public BiomeGeneration biomes;
 	
 	public Tropics() 
 	{		
-		elements = new BiomeGeneration();
+		biomes = new BiomeGeneration();
 		
 		instance = this;
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -39,7 +39,7 @@ public class Tropics
 		LOGGER.info("** BEGINNING SETUP METHOD **");
 		
 		//Biome World Generation
-		elements.getElements().forEach(element -> element.init(event));
+		biomes.getBiomes().forEach(element -> element.init(event));	
 		LOGGER.info("-- BIOMES GENERATED --");
 		
 		//Custom Ore Generation
