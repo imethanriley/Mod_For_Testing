@@ -8,11 +8,11 @@ import tropics.entities.entity.passive.PoisonDartFrogEntity;
 import tropics.entities.model.passive.PoisonDartFrogModel;
 
 public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, PoisonDartFrogModel>  {
-	private static final ResourceLocation BLUE_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_blue_spotted.png");
-	private static final ResourceLocation GREEN_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_green_spotted.png");
-	private static final ResourceLocation TYPE_3 = Tropics.location("textures/entity/dartfrog/dart_frog_3.png");
-	private static final ResourceLocation TYPE_4 = Tropics.location("textures/entity/dartfrog/dart_frog_4.png");
-	private static final ResourceLocation TYPE_5 = Tropics.location("textures/entity/dartfrog/dart_frog_5.png");
+	private static final ResourceLocation BLUE = Tropics.location("textures/entity/dartfrog/dart_frog_blue.png");
+	private static final ResourceLocation GREEN_TEAL_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_green_teal_spotted.png");
+	private static final ResourceLocation RED_BLACK_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_red_black_spotted.png");
+	private static final ResourceLocation ORANGE_BLACK_STRIPE = Tropics.location("textures/entity/dartfrog/dart_frog_orange_black_stripe.png");
+	private static final ResourceLocation ORANGE_WHITE_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_orange_white_spotted.png");
 	private static final ResourceLocation TYPE_6 = Tropics.location("textures/entity/dartfrog/dart_frog_6.png");
 	private static final ResourceLocation TYPE_7 = Tropics.location("textures/entity/dartfrog/dart_frog_7.png");
 	private static final ResourceLocation TYPE_8 = Tropics.location("textures/entity/dartfrog/dart_frog_8.png");
@@ -25,15 +25,15 @@ public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, Po
 		switch(entity.getDartFrogType()) {
 		case 0:
 		default:
-			return BLUE_SPOTTED;
+			return BLUE;
 		case 1:
-			return GREEN_SPOTTED;
+			return GREEN_TEAL_SPOTTED;
 		case 2:
-			return TYPE_3;
+			return RED_BLACK_SPOTTED;
 		case 3:
-			return TYPE_4;
+			return ORANGE_BLACK_STRIPE;
 		case 4:
-			return TYPE_5;
+			return ORANGE_WHITE_SPOTTED;
 		case 5:
 			return TYPE_6;
 		case 6:

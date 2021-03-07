@@ -273,7 +273,7 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	}
 	
 	private int getRandomDartFrogType(IWorld world) {
-		int i = this.rand.nextInt(7);
+		int i = this.rand.nextInt(8);
 		return i;
 	}
 	
