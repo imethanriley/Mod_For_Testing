@@ -3,6 +3,7 @@ package tropics.init;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import tropics.init.items.TropicsItems;
 
 public enum TropicsToolMaterials implements IItemTier 
 {

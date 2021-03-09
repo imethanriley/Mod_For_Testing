@@ -1,16 +1,8 @@
 package tropics.world.generation;
 
 import net.minecraftforge.forgespi.language.ModFileScanData;
-//import net.minecraftforge.fml.network.NetworkRegistry;
-//import net.minecraftforge.fml.network.simple.SimpleChannel;
-//import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-//import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.ModList;
-//import net.minecraftforge.api.distmarker.OnlyIn;
-//import net.minecraftforge.api.distmarker.Dist;
-
-//import net.minecraft.util.ResourceLocation;
 import java.util.Set;
 import java.util.List;
 import java.util.Collections;

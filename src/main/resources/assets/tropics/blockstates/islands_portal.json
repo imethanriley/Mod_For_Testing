@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "tropics:block/islands_portal_ew"
+    },
+    "axis=x": {
+      "model": "tropics:block/islands_portal_ns"
+    }
+  }
+}

@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import tropics.Tropics;
+import tropics.init.items.TropicsItems;
 
 public enum TropicsArmorMaterials implements IArmorMaterial 
 {
