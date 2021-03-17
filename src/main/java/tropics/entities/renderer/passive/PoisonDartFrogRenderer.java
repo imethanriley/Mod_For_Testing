@@ -13,9 +13,9 @@ public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, Po
 	private static final ResourceLocation RED_BLACK_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_red_black_spotted.png");
 	private static final ResourceLocation ORANGE_BLACK_STRIPE = Tropics.location("textures/entity/dartfrog/dart_frog_orange_black_stripe.png");
 	private static final ResourceLocation ORANGE_WHITE_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_orange_white_spotted.png");
-	private static final ResourceLocation TYPE_6 = Tropics.location("textures/entity/dartfrog/dart_frog_6.png");
-	private static final ResourceLocation TYPE_7 = Tropics.location("textures/entity/dartfrog/dart_frog_7.png");
-	private static final ResourceLocation TYPE_8 = Tropics.location("textures/entity/dartfrog/dart_frog_8.png");
+	private static final ResourceLocation BLACK_YELLOW = Tropics.location("textures/entity/dartfrog/dart_frog_black_yellow.png");
+	private static final ResourceLocation BLACK_GREEN = Tropics.location("textures/entity/dartfrog/dart_frog_black_green.png");
+	private static final ResourceLocation BLACK_PURPLE = Tropics.location("textures/entity/dartfrog/dart_frog_black_purple.png");
 	
 	public PoisonDartFrogRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new PoisonDartFrogModel(), 0.3F);
@@ -35,11 +35,11 @@ public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, Po
 		case 4:
 			return ORANGE_WHITE_SPOTTED;
 		case 5:
-			return TYPE_6;
+			return BLACK_YELLOW;
 		case 6:
-			return TYPE_7;
+			return BLACK_GREEN;
 		case 7:
-			return TYPE_8;
+			return BLACK_PURPLE;
 		}
 	}
 }

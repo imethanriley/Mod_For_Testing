@@ -1,4 +1,4 @@
-package tropics.init;
+package tropics.init.armor;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;

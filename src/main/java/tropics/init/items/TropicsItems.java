@@ -15,9 +15,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import tropics.Tropics;
-import tropics.init.TropicsArmorMaterials;
 import tropics.init.TropicsEntities;
 import tropics.init.TropicsToolMaterials;
+import tropics.init.armor.TropicsArmorMaterials;
+import tropics.init.armor.dominus.ItemDominusArmor;
+import tropics.init.armor.dominus.ItemDominusHelm;
 import tropics.init.blocks.TropicsBlocks;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -44,6 +46,11 @@ public class TropicsItems {
 	public static Item volcanic_chestplate;
 	public static Item volcanic_leggings;
 	public static Item volcanic_boots;
+	
+	public static Item dominus_helmet;
+	public static Item dominus_chestplate;
+	public static Item dominus_leggings;
+	public static Item dominus_boots ;
 	
 	//Spawn Eggs
 	public static Item angler_fish_spawn_egg;
@@ -75,11 +82,16 @@ public class TropicsItems {
 			volcanic_shovel = new ShovelItem(TropicsToolMaterials.volcanic, +3.5f, -3f, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_shovel")),
 			volcanic_sword = new SwordItem(TropicsToolMaterials.volcanic, +5, -2.4f, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_sword")),
 		
-			//Armor
+			//Armor			
 			volcanic_helmet = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.HEAD, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_helmet")),
 			volcanic_chestplate = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.CHEST, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_chestplate")),
 			volcanic_leggings = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.LEGS, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_leggings")),
-			volcanic_boots = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.FEET, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_boots"))
+			volcanic_boots = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.FEET, new Item.Properties().group(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_boots")),
+			
+			dominus_helmet = new ItemDominusHelm(unstackable()).setRegistryName(Tropics.location("dominus_helmet")),
+			dominus_chestplate = new ItemDominusArmor(EquipmentSlotType.CHEST, unstackable()).setRegistryName(Tropics.location("dominus_chestplate")),
+			dominus_leggings = new ItemDominusArmor(EquipmentSlotType.LEGS, unstackable()).setRegistryName(Tropics.location("dominus_leggings")),
+			dominus_boots = new ItemDominusArmor(EquipmentSlotType.FEET, unstackable()).setRegistryName(Tropics.location("dominus_boots"))
 		);		
 		
 		//Spawn Eggs
@@ -96,5 +108,13 @@ public class TropicsItems {
 		reg.register(TropicsItems.poison_dart_frog_spawn_egg);
 		
 		Tropics.LOGGER.info("Items registered");
+	}
+	
+	public static Item.Properties defaultBuilder() {
+		return new Item.Properties().group(Tropics.TROPICS);
+	}
+	
+	private static Item.Properties unstackable() {
+		return defaultBuilder().maxStackSize(1);
 	}
 }

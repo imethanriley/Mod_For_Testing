@@ -74,7 +74,7 @@ import tropics.world.generation.DimensionGeneration;
 public class IslandsDimension extends DimensionGeneration.TropicsDimensions {
 	@ObjectHolder(Tropics.MOD_ID + ":" + "islands_portal")
 	public static final CustomPortalBlock portal = null;
-	public static final Block PORTAL_FRAME_BLOCK = Blocks.GLOWSTONE;
+	public static final Block PORTAL_FRAME_BLOCK = Blocks.ANDESITE;
 	public static BasicParticleType portalParticle = ParticleTypes.BUBBLE;
 	
 	public IslandsDimension(DimensionGeneration instance) {
@@ -116,7 +116,7 @@ public class IslandsDimension extends DimensionGeneration.TropicsDimensions {
 		DeferredWorkQueue.runLater(() -> {
 			try {
 				Object2ObjectMap<ResourceLocation, DimensionRenderInfo> effectsRegistry = (Object2ObjectMap<ResourceLocation, DimensionRenderInfo>) ObfuscationReflectionHelper
-						.getPrivateValue(DimensionRenderInfo.class, null, "field_239208_a_");
+						.getPrivateValue(DimensionRenderInfo.class, null, "test"); //field_239208_a_
 				effectsRegistry.put(new ResourceLocation(Tropics.MOD_ID + ":" + "islands"), customEffect);
 			} catch (Exception e) {
 				e.printStackTrace();

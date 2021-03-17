@@ -59,7 +59,7 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes
 	      DefaultBiomeFeatures.withMushroomBiomeVegetation(GENERATION_SETTINGS);
 	      DefaultBiomeFeatures.withLavaAndWaterSprings(GENERATION_SETTINGS);
 	      
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 100, 400));
+	      SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 3, 6));
 	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 2, 6));
 	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 20, 4, 8));
 	      
