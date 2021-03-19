@@ -17,8 +17,8 @@ public class ModArmorMaterials implements DummyArmorMaterials
 {
 
 	private enum ArmorMaterial implements IArmorMaterial {
-		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, () -> TropicsItems.volcanic_ingot, 2.0f),
-		DOMINUS("dominus", 34, new int[] { 3, 6, 8, 3 }, 26, () -> SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, () -> TropicsItems.dominus_ingot, 3);
+		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.volcanic_ingot, 2.0f),
+		DOMINUS("dominus", 34, new int[] { 3, 6, 8, 3 }, 26, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.dominus_ingot, 3);
 
 		private final String name;
 		private final int durabilityMultiplier;
@@ -40,30 +40,30 @@ public class ModArmorMaterials implements DummyArmorMaterials
 		}
 
 		@Override
-		public int getDurability(EquipmentSlotType slot) {
+		public int getDurabilityForSlot(EquipmentSlotType slot) {
 			return durabilityMultiplier * MAX_DAMAGE_ARRAY[slot.getIndex()];
 		}
 
 		@Override
-		public int getDamageReductionAmount(EquipmentSlotType slot) {
+		public int getDefenseForSlot(EquipmentSlotType slot) {
 			return damageReduction[slot.getIndex()];
 		}
 
 		@Override
-		public int getEnchantability() {
+		public int getEnchantmentValue() {
 			return enchantability;
 		}
 
 		@Nonnull
 		@Override
-		public SoundEvent getSoundEvent() {
+		public SoundEvent getEquipSound() {
 			return equipSound.get();
 		}
 
 		@Nonnull
 		@Override
-		public Ingredient getRepairMaterial() {
-			return Ingredient.fromItems(repairItem.get());
+		public Ingredient getRepairIngredient() {
+			return Ingredient.of(repairItem.get());
 		}
 
 		@Nonnull
@@ -104,33 +104,33 @@ public class ModArmorMaterials implements DummyArmorMaterials
 		}
 
 		@Override
-		public int getMaxUses() {
+		public int getUses() {
 			return maxUses;
 		}
 
 		@Override
-		public float getEfficiency() {
+		public float getSpeed() {
 			return efficiency;
 		}
 
 		@Override
-		public float getAttackDamage() {
+		public float getAttackDamageBonus() {
 			return attackDamage;
 		}
 
 		@Override
-		public int getHarvestLevel() {
+		public int getLevel() {
 			return harvestLevel;
 		}
 
 		@Override
-		public int getEnchantability() {
+		public int getEnchantmentValue() {
 			return enchantability;
 		}
 
 		@Override
-		public Ingredient getRepairMaterial() {
-			return Ingredient.fromItems(repairItem.get());
+		public Ingredient getRepairIngredient() {
+			return Ingredient.of(repairItem.get());
 		}
 	}
 	

@@ -39,36 +39,36 @@ public class AnglerFishEntity extends AbstractGroupFishEntity {
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_COD_AMBIENT;
+		return SoundEvents.COD_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_COD_HURT;
+		return SoundEvents.COD_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_COD_DEATH;
+		return SoundEvents.COD_DEATH;
 	}
 	
 	@Override
 	protected SoundEvent getFlopSound() {
-		return SoundEvents.ENTITY_COD_FLOP;
+		return SoundEvents.COD_FLOP;
 	}
 
 	@Override
-	protected ItemStack getFishBucket() {
+	protected ItemStack getBucketItemStack() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 3);
+	public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3);
     }
 	
 	@Override
-	protected ResourceLocation getLootTable() {
+	protected ResourceLocation getDefaultLootTable() {
 		return Tropics.location("angler_fish");
 	}
 	 
@@ -80,6 +80,6 @@ public class AnglerFishEntity extends AbstractGroupFishEntity {
 
     private static boolean isSourceBlock(IWorld world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-        return state.getBlock() instanceof FlowingFluidBlock && world.getFluidState(pos).isTagged(FluidTags.WATER) && state.get(FlowingFluidBlock.LEVEL) == 0;
+        return state.getBlock() instanceof FlowingFluidBlock && world.getFluidState(pos).is(FluidTags.WATER) && state.getValue(FlowingFluidBlock.LEVEL) == 0;
     }
 }

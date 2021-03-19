@@ -42,7 +42,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import tropics.init.TropicsEntities;
 
 public class PoisonDartFrogEntity extends AnimalEntity {
-	private static final DataParameter<Integer> DART_FROG_TYPE = EntityDataManager.createKey(PoisonDartFrogEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> DART_FROG_TYPE = EntityDataManager.defineId(PoisonDartFrogEntity.class, DataSerializers.INT);
 	//private static final ResourceLocation RARE_FROG = new ResourceLocation("rare_dart_frog");
 	private int jumpTicks;
 	private int jumpDuration;
@@ -51,8 +51,8 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	
 	public PoisonDartFrogEntity(EntityType<? extends PoisonDartFrogEntity> entityIn, World world) {
 	   super(entityIn, world);
-	   this.jumpController = new PoisonDartFrogEntity.JumpHelperController(this);
-	   this.moveController = new PoisonDartFrogEntity.MoveHelperController(this);
+	   this.jumpControl = new PoisonDartFrogEntity.JumpHelperController(this);
+	   this.moveControl = new PoisonDartFrogEntity.MoveHelperController(this);
 	   this.setMovementSpeed(0.0D);
 	}
 	
@@ -60,38 +60,38 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	   this.goalSelector.addGoal(1, new SwimGoal(this));
 	   this.goalSelector.addGoal(1, new PoisonDartFrogEntity.PanicGoal(this, 2.2D));
 	   this.goalSelector.addGoal(2, new BreedGoal(this, 0.8D));
-	   this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.fromItems(Items.CARROT, Items.GOLDEN_CARROT), false));
+	   this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.CARROT, Items.GOLDEN_CARROT), false));
 	   this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
 	   this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
 	}
 	
-	protected float getJumpUpwardsMotion() {
-		if (!this.collidedHorizontally && (!this.moveController.isUpdating() || !(this.moveController.getY() > this.getPosY() + 0.5D))) {
-			Path path = this.navigator.getPath();
-			if (path != null && !path.isFinished()) {
-				Vector3d vector3d = path.getPosition(this);
-			if (vector3d.y > this.getPosY() + 0.5D) {
+	protected float getJumpPower() {
+		if (!this.horizontalCollision && (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
+			Path path = this.navigation.getPath();
+			if (path != null && !path.isDone()) {
+				Vector3d vector3d = path.getNextEntityPos(this);
+			if (vector3d.y > this.getY() + 0.5D) {
 				return 0.5F;
             }
        }
-			return this.moveController.getSpeed() <= 0.6D ? 0.2F : 0.3F;
+			return this.moveControl.getSpeedModifier() <= 0.6D ? 0.2F : 0.3F;
 	   } else {
 	        return 0.5F;
 	   }
 	}
 	
-	protected void jump() {
-		super.jump();
-	    Double d0 = this.moveController.getSpeed();
+	protected void jumpFromGround() {
+		super.jumpFromGround();
+	    Double d0 = this.moveControl.getSpeedModifier();
 	    	if (d0 > 0.0D) {
-	    		double d1 = horizontalMag(this.getMotion());
+	    		double d1 = getHorizontalDistanceSqr(this.getDeltaMovement());
 	        if (d1 < 0.01D) {
 	            this.moveRelative(0.1F, new Vector3d(0.0D, 0.0D, 1.0D));
 	        }
 	    }
 
-	    if (!this.world.isRemote) {
-	    	this.world.setEntityState(this, (byte)1);
+	    if (!this.level.isClientSide) {
+	    	this.level.broadcastEntityEvent(this, (byte)1);
 	    }
 	}
 	
@@ -100,14 +100,14 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	}
 
 	public void setMovementSpeed(double newSpeed) {
-	   this.getNavigator().setSpeed(newSpeed);
-	   this.moveController.setMoveTo(this.moveController.getX(), this.moveController.getY(), this.moveController.getZ(), newSpeed);
+	   this.getNavigation().setSpeedModifier(newSpeed);
+	   this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), newSpeed);
 	}
 
 	public void setJumping(boolean jumping) {
 	   super.setJumping(jumping);
 	   if (jumping) {
-	      this.playSound(this.getJumpSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 0.8F);
+	      this.playSound(this.getJumpSound(), this.getSoundVolume(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
 	   }
 
 	}
@@ -118,12 +118,12 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	   this.jumpTicks = 0;
 	}
 	
-	protected void registerData() {
-	   super.registerData();
-	   this.dataManager.register(DART_FROG_TYPE, 0);
+	protected void defineSynchedData() {
+	   super.defineSynchedData();
+	   this.entityData.define(DART_FROG_TYPE, 0);
 	}
 	
-	public void updateAITasks() {
+	public void customServerAiStep() {
 	   if (this.currentMoveTypeDuration > 0) {
 	      --this.currentMoveTypeDuration;
 	   }
@@ -135,13 +135,13 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	      }
 
 
-	      PoisonDartFrogEntity.JumpHelperController poisondartfrogentity$jumphelpercontroller = (PoisonDartFrogEntity.JumpHelperController)this.jumpController;
+	      PoisonDartFrogEntity.JumpHelperController poisondartfrogentity$jumphelpercontroller = (PoisonDartFrogEntity.JumpHelperController)this.jumpControl;
 	      if (!poisondartfrogentity$jumphelpercontroller.getIsJumping()) {
-	         if (this.moveController.isUpdating() && this.currentMoveTypeDuration == 0) {
-	            Path path = this.navigator.getPath();
-	            Vector3d vector3d = new Vector3d(this.moveController.getX(), this.moveController.getY(), this.moveController.getZ());
-	            if (path != null && !path.isFinished()) {
-	               vector3d = path.getPosition(this);
+	         if (this.moveControl.hasWanted() && this.currentMoveTypeDuration == 0) {
+	            Path path = this.navigation.getPath();
+	            Vector3d vector3d = new Vector3d(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ());
+	            if (path != null && !path.isDone()) {
+	               vector3d = path.getNextEntityPos(this);
 	            }
 
 	            this.calculateRotationYaw(vector3d.x, vector3d.z);
@@ -154,24 +154,24 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	      this.wasOnGround = this.onGround;
 	}
 	
-	public boolean shouldSpawnRunningEffects() {
+	public boolean canSpawnSprintParticle() {
 	   return false;
 	}
 	
 	private void calculateRotationYaw(double x, double z) {
-	   this.rotationYaw = (float)(MathHelper.atan2(z - this.getPosZ(), x - this.getPosX()) * (double)(180F / (float)Math.PI)) - 90.0F;
+	   this.yRot = (float)(MathHelper.atan2(z - this.getZ(), x - this.getX()) * (double)(180F / (float)Math.PI)) - 90.0F;
 	}
 
 	private void enableJumpControl() {
-	   ((PoisonDartFrogEntity.JumpHelperController)this.jumpController).setCanJump(true);
+	   ((PoisonDartFrogEntity.JumpHelperController)this.jumpControl).setCanJump(true);
 	}
 
 	private void disableJumpControl() {
-	   ((PoisonDartFrogEntity.JumpHelperController)this.jumpController).setCanJump(false);
+	   ((PoisonDartFrogEntity.JumpHelperController)this.jumpControl).setCanJump(false);
 	}
 
 	private void updateMoveTypeDuration() {
-	   if (this.moveController.getSpeed() < 2.2D) {
+	   if (this.moveControl.getSpeedModifier() < 2.2D) {
 	      this.currentMoveTypeDuration = 10;
 	   } else {
 	      this.currentMoveTypeDuration = 1;
@@ -184,8 +184,8 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	   this.disableJumpControl();
 	}
 	
-	public void livingTick() {
-	   super.livingTick();
+	public void aiStep() {
+	   super.aiStep();
 	   if (this.jumpTicks != this.jumpDuration) {
 	      ++this.jumpTicks;
 	   } else if (this.jumpDuration != 0) {
@@ -196,45 +196,45 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 
 	}
 
-	public static AttributeModifierMap.MutableAttribute getAttributes() {
-	   return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 3.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.3F).createMutableAttribute(Attributes.FOLLOW_RANGE, getRenderDistanceWeight());
+	public static AttributeModifierMap.MutableAttribute registerAttributes() {
+	   return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.MOVEMENT_SPEED, (double)0.3F).add(Attributes.FOLLOW_RANGE, getViewScale());
 	}
 
-	public void writeAdditional(CompoundNBT compound) {
-	   super.writeAdditional(compound);
+	public void addAdditionalSaveData(CompoundNBT compound) {
+	   super.addAdditionalSaveData(compound);
 	   compound.putInt("DartFrogType", this.getDartFrogType());
 	}
 	
-	public void readAdditional(CompoundNBT compound) {
-	   super.readAdditional(compound);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+	   super.readAdditionalSaveData(compound);
 	   this.setDartFrogType(compound.getInt("DartFrogType"));
 	}
 	
 	protected SoundEvent getJumpSound() {
-	   return SoundEvents.ENTITY_RABBIT_JUMP;
+	   return SoundEvents.RABBIT_JUMP;
 	}
 
 	protected SoundEvent getAmbientSound() {
-	   return SoundEvents.ENTITY_RABBIT_AMBIENT;
+	   return SoundEvents.RABBIT_AMBIENT;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-	   return SoundEvents.ENTITY_RABBIT_HURT;
+	   return SoundEvents.RABBIT_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-	   return SoundEvents.ENTITY_RABBIT_DEATH;
+	   return SoundEvents.RABBIT_DEATH;
 	}
 	
 	private boolean isDartFrogBreedingItem(Item itemIn) {
 	      return itemIn == Items.CARROT || itemIn == Items.GOLDEN_CARROT;
 	}
 
-	public PoisonDartFrogEntity func_241840_a(ServerWorld worldIn, AgeableEntity entity) {
+	public PoisonDartFrogEntity getBreedOffspring(ServerWorld worldIn, AgeableEntity entity) {
 		PoisonDartFrogEntity dartfrogentity = TropicsEntities.POISON_DART_FROG.create(worldIn);
 	    int i = this.getRandomDartFrogType(worldIn);
-	    if (this.rand.nextInt(20) != 0) {
-	    	if (entity instanceof PoisonDartFrogEntity && this.rand.nextBoolean()) {
+	    if (this.random.nextInt(20) != 0) {
+	    	if (entity instanceof PoisonDartFrogEntity && this.random.nextBoolean()) {
 	    		//i = ((PoisonDartFrogEntity)entity).getDartFrogType();
 	    		i = getRandomDartFrogType(worldIn);
 	        } else {
@@ -247,20 +247,20 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	  	return dartfrogentity;
 	}
 	
-	public boolean isBreedingItem(ItemStack stack) {
+	public boolean isFood(ItemStack stack) {
 		return this.isDartFrogBreedingItem(stack.getItem());
 	}
 
 	public int getDartFrogType() {
-		return this.dataManager.get(DART_FROG_TYPE);
+		return this.entityData.get(DART_FROG_TYPE);
 	}
 	
 	public void setDartFrogType(int frogTypeId) {
-		this.dataManager.set(DART_FROG_TYPE, frogTypeId);
+		this.entityData.set(DART_FROG_TYPE, frogTypeId);
 	}
 	
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		int i = this.getRandomDartFrogType(worldIn);
 		if (spawnDataIn instanceof PoisonDartFrogEntity.PoisonDartFrogData) {
 			i = ((PoisonDartFrogEntity.PoisonDartFrogData)spawnDataIn).typeData;
@@ -269,29 +269,28 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 		}
 
 		this.setDartFrogType(i);
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
 	private int getRandomDartFrogType(IWorld world) {
-		int i = this.rand.nextInt(8);
-		return i;
+		return this.random.nextInt(8);
 	}
 	
     @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id) {
+    public void handleEntityEvent(byte id) {
        if (id == 1) {
-          this.handleRunningEffect();
+          this.spawnSprintParticle();
           this.jumpDuration = 10;
           this.jumpTicks = 0;
        } else {
-          super.handleStatusUpdate(id);
+          super.handleEntityEvent(id);
        }
 
     }
 
     @OnlyIn(Dist.CLIENT)
-    public Vector3d func_241205_ce_() {
-       return new Vector3d(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getWidth() * 0.4F));
+    public Vector3d getLeashOffset() {
+       return new Vector3d(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.4F));
     }
     
     public class JumpHelperController extends JumpController {
@@ -304,7 +303,7 @@ public class PoisonDartFrogEntity extends AnimalEntity {
         }
 
         public boolean getIsJumping() {
-           return this.isJumping;
+           return this.jump;
         }
 
         public boolean canJump() {
@@ -319,9 +318,9 @@ public class PoisonDartFrogEntity extends AnimalEntity {
          * Called to actually make the entity jump if isJumping is true.
          */
         public void tick() {
-           if (this.isJumping) {
+           if (this.jump) {
               this.frog.startJumping();
-              this.isJumping = false;
+              this.jump = false;
            }
 
         }
@@ -337,9 +336,9 @@ public class PoisonDartFrogEntity extends AnimalEntity {
         }
 
         public void tick() {
-           if (this.frog.onGround && !this.frog.isJumping && !((PoisonDartFrogEntity.JumpHelperController)this.frog.jumpController).getIsJumping()) {
+           if (this.frog.onGround && !this.frog.jumping && !((PoisonDartFrogEntity.JumpHelperController)this.frog.jumpControl).getIsJumping()) {
               this.frog.setMovementSpeed(0.0D);
-           } else if (this.isUpdating()) {
+           } else if (this.hasWanted()) {
               this.frog.setMovementSpeed(this.nextJumpSpeed);
            }
 
@@ -349,12 +348,12 @@ public class PoisonDartFrogEntity extends AnimalEntity {
         /**
          * Sets the speed and location to move to
          */
-        public void setMoveTo(double x, double y, double z, double speedIn) {
+        public void setWantedPosition(double x, double y, double z, double speedIn) {
            if (this.frog.isInWater()) {
               speedIn = 1.5D;
            }
 
-           super.setMoveTo(x, y, z, speedIn);
+           super.setWantedPosition(x, y, z, speedIn);
            if (speedIn > 0.0D) {
               this.nextJumpSpeed = speedIn;
            }
@@ -375,7 +374,7 @@ public class PoisonDartFrogEntity extends AnimalEntity {
          */
         public void tick() {
            super.tick();
-           this.frog.setMovementSpeed(this.speed);
+           this.frog.setMovementSpeed(this.speedModifier);
         }
      }
     

@@ -15,7 +15,7 @@ public class RavenRenderer extends MobRenderer<RavenEntity, RavenModel> {
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(RavenEntity entity) {
+	public ResourceLocation getTextureLocation(RavenEntity entity) {
 		return TEXTURE;
 	}
 }

@@ -31,15 +31,15 @@ public enum TropicsArmorMaterials implements IArmorMaterial
 		this.toughness = toughness;
 	}
 
-	public int getDamageReductionAmount(EquipmentSlotType slot) {
+	public int getDefenseForSlot(EquipmentSlotType slot) {
 		return this.damageReductionAmounts[slot.getIndex()];
 	}
 
-	public int getDurability(EquipmentSlotType slot) {
+	public int getDurabilityForSlot(EquipmentSlotType slot) {
 		return max_damage_array[slot.getIndex()] * this.durability;
 	}
 
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return this.enchantability;
 	}
 
@@ -51,11 +51,11 @@ public enum TropicsArmorMaterials implements IArmorMaterial
 		return Tropics.MOD_ID + ":" + this.name;
 	}
 	
-	public Ingredient getRepairMaterial() {
-		return Ingredient.fromItems(this.repairItem);
+	public Ingredient getRepairIngredient() {
+		return Ingredient.of(this.repairItem);
 	}
 
-	public SoundEvent getSoundEvent() {
+	public SoundEvent getEquipSound() {
 		return new SoundEvent(new ResourceLocation(equipSound));
 	}
 

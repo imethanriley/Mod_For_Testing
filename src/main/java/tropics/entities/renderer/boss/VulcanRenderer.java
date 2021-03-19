@@ -21,18 +21,18 @@ public class VulcanRenderer extends MobRenderer<VulcanEntity, VulcanModel<Vulcan
    }
 
    @Override
-   protected void preRenderCallback(VulcanEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+   protected void scale(VulcanEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
       float scaleFactor = 1.00F;
       matrixStackIn.scale(scaleFactor, scaleFactor, scaleFactor);
-      super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+      super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
    }
 
-   public ResourceLocation getEntityTexture(VulcanEntity entity) {
+   public ResourceLocation getTextureLocation(VulcanEntity entity) {
       return TEXTURE;
    }
 
-   protected void applyRotations(VulcanEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-      super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+   protected void setupRotations(VulcanEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+      super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
       /*
       if (!((double)entityLiving.limbSwingAmount < 0.01D)) {
          float f = 13.0F;

@@ -17,19 +17,19 @@ import tropics.entities.entity.passive.RavenEntity;
 public class TropicsEntities {
 	
 	//Bosses
-	public static final EntityType<VulcanEntity> VULCAN = EntityType.Builder.<VulcanEntity>create(VulcanEntity::new, EntityClassification.MONSTER).size(2.6f, 3.8f).build(Tropics.MOD_ID + ":vulcan");
+	public static final EntityType<VulcanEntity> VULCAN = EntityType.Builder.<VulcanEntity>of(VulcanEntity::new, EntityClassification.MONSTER).sized(2.6f, 3.8f).build(Tropics.MOD_ID + ":vulcan");
 	
 	//Passive Mobs
-	public static final EntityType<AnglerFishEntity> ANGLER_FISH = EntityType.Builder.<AnglerFishEntity>create(AnglerFishEntity::new, EntityClassification.WATER_CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":angler_fish");
-	public static final EntityType<RavenEntity> RAVEN = EntityType.Builder.<RavenEntity>create(RavenEntity::new, EntityClassification.CREATURE).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":raven");
-	public static final EntityType<PoisonDartFrogEntity> POISON_DART_FROG = EntityType.Builder.<PoisonDartFrogEntity>create(PoisonDartFrogEntity::new, EntityClassification.CREATURE).size(0.45f, 0.45f).build(Tropics.MOD_ID + ":poison_dart_frog");
+	public static final EntityType<AnglerFishEntity> ANGLER_FISH = EntityType.Builder.<AnglerFishEntity>of(AnglerFishEntity::new, EntityClassification.WATER_CREATURE).sized(0.5f, 0.5f).build(Tropics.MOD_ID + ":angler_fish");
+	public static final EntityType<RavenEntity> RAVEN = EntityType.Builder.<RavenEntity>of(RavenEntity::new, EntityClassification.CREATURE).sized(0.5f, 0.5f).build(Tropics.MOD_ID + ":raven");
+	public static final EntityType<PoisonDartFrogEntity> POISON_DART_FROG = EntityType.Builder.<PoisonDartFrogEntity>of(PoisonDartFrogEntity::new, EntityClassification.CREATURE).sized(0.45f, 0.45f).build(Tropics.MOD_ID + ":poison_dart_frog");
 	
 	//Projectiles
-	public static final EntityType<MineEntity> MINE = EntityType.Builder.<MineEntity>create(MineEntity::new, EntityClassification.MISC).size(0.5f, 0.5f).build(Tropics.MOD_ID + ":mine");
+	public static final EntityType<MineEntity> MINE = EntityType.Builder.<MineEntity>of(MineEntity::new, EntityClassification.MISC).sized(0.5f, 0.5f).build(Tropics.MOD_ID + ":mine");
 	
 
 	@SubscribeEvent
-	public static void regsiterEntities(final RegistryEvent.Register<EntityType<?>> event) {
+	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
 		IForgeRegistry<EntityType<?>> reg = event.getRegistry();
 		
 		VULCAN.setRegistryName(Tropics.MOD_ID, "vulcan");
@@ -44,10 +44,10 @@ public class TropicsEntities {
 		reg.register(POISON_DART_FROG);
 		reg.register(MINE);
 		
-		GlobalEntityTypeAttributes.put(VULCAN, VulcanEntity.getAttributes().create());
-		GlobalEntityTypeAttributes.put(ANGLER_FISH, AnglerFishEntity.getAttributes().create());
-		GlobalEntityTypeAttributes.put(RAVEN, RavenEntity.getAttributes().create());
-		GlobalEntityTypeAttributes.put(POISON_DART_FROG, PoisonDartFrogEntity.getAttributes().create());
+		GlobalEntityTypeAttributes.put(VULCAN, VulcanEntity.registerAttributes().build());
+		GlobalEntityTypeAttributes.put(ANGLER_FISH, AnglerFishEntity.registerAttributes().build());
+		GlobalEntityTypeAttributes.put(RAVEN, RavenEntity.registerAttributes().build());
+		GlobalEntityTypeAttributes.put(POISON_DART_FROG, PoisonDartFrogEntity.registerAttributes().build());
 		
 	}
 }

@@ -35,22 +35,22 @@ public class OreGeneration
     	
     	
     	//Overworld Ore Register
-    	OVERWORLD_ORES.add(register("test_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, TropicsBlocks.dominus_ore.getBlock().getDefaultState(), 12)) //Vein Size
-                .range(128).square() //Spawn height start
-                .func_242731_b(64))); //Chunk spawn frequency
+    	OVERWORLD_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
+                OreFeatureConfig.FillerBlockType.NATURAL_STONE, TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+                .range(128).squared() //Spawn height start
+                .count(64))); //Chunk spawn frequency
         
       //Nether Ore Register
-    	NETHER_ORES.add(register("test_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NETHERRACK, TropicsBlocks.dominus_ore.getBlock().getDefaultState(), 12)) //Vein Size
-                .range(128).square() //Spawn height start
-                .func_242731_b(64))); //Chunk spawn frequency
+    	NETHER_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
+                OreFeatureConfig.FillerBlockType.NETHERRACK, TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+                .range(128).squared() //Spawn height start
+                .count(64))); //Chunk spawn frequency
  
         //The End Ore Register
-    	END_ORES.add(register("test_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
-                new BlockMatchRuleTest(Blocks.END_STONE), TropicsBlocks.dominus_ore.getBlock().getDefaultState(), 12)) //Vein Size
-                .range(128).square() //Spawn height start
-                .func_242731_b(64))); //Chunk spawn frequency
+    	END_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
+                new BlockMatchRuleTest(Blocks.END_STONE), TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+                .range(128).squared() //Spawn height start
+                .count(64))); //Chunk spawn frequency
         
     }
     
@@ -61,16 +61,16 @@ public class OreGeneration
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
         if(event.getCategory().equals(Biome.Category.NETHER)){
             for(ConfiguredFeature<?, ?> ore : NETHER_ORES){
-                if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+                if (ore != null) generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
             }
         }
         if(event.getCategory().equals(Biome.Category.THEEND)){
             for(ConfiguredFeature<?, ?> ore : END_ORES){
-                if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+                if (ore != null) generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
             }
         }
         for(ConfiguredFeature<?, ?> ore : OVERWORLD_ORES){
-            if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+            if (ore != null) generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
         }
     }
     

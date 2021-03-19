@@ -21,7 +21,7 @@ public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, Po
 		super(renderManagerIn, new PoisonDartFrogModel(), 0.3F);
 	}
 	
-	public ResourceLocation getEntityTexture(PoisonDartFrogEntity entity) {
+	public ResourceLocation getTextureLocation(PoisonDartFrogEntity entity) {
 		switch(entity.getDartFrogType()) {
 		case 0:
 		default:

@@ -15,6 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import tropics.init.armor.DummyArmorMaterials;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemDominusArmor extends ArmorItem {
 
 	private final LazyValue<BipedModel<?>> model;
@@ -42,7 +44,7 @@ public class ItemDominusArmor extends ArmorItem {
 	@OnlyIn(Dist.CLIENT)
 	@SuppressWarnings("unchecked")
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A original) {
-		return (A) model.getValue();
+		return (A) model.get();
 	}
 	
 	@OnlyIn(Dist.CLIENT)

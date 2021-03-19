@@ -15,7 +15,7 @@ public class AnglerFishRenderer extends MobRenderer<AnglerFishEntity, AnglerFish
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(AnglerFishEntity entity) {
+	public ResourceLocation getTextureLocation(AnglerFishEntity entity) {
 		return TEXTURE;
 	}
 }

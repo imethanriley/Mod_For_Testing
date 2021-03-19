@@ -1,6 +1,6 @@
 license="<Unlicense>"
 modLoader="javafml" #mandatory
-loaderVersion="[31,)" #mandatory
+loaderVersion="[36,)" #mandatory
 
 [[mods]] #mandatory
 modId="tropics" #mandatory
@@ -16,7 +16,7 @@ Search for the new land, follow the story, and discover all the Island has to of
 [[dependencies.tropics]]
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[31,)" #mandatory
+    versionRange="[36,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -25,6 +25,6 @@ Search for the new land, follow the story, and discover all the Island has to of
 [[dependencies.tropics]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"

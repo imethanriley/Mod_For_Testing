@@ -23,28 +23,28 @@ public enum TropicsToolMaterials implements IItemTier
 		this.repairMaterial = repairMaterial;
 	}
 
-	public float getAttackDamage() {
+	public float getAttackDamageBonus() {
 		return this.attackDamage;
 	}
 
-	public float getEfficiency() {
+	public float getSpeed() {
 		return this.efficiency;
 	}
 
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return this.enchantability;
 	}
 
-	public int getHarvestLevel() {
+	public int getLevel() {
 		return this.harvestLevel;
 	}
 
-	public int getMaxUses() {
+	public int getUses() {
 		return this.durability;
 	}
 
-	public Ingredient getRepairMaterial() {
-		return Ingredient.fromItems(this.repairMaterial);
+	public Ingredient getRepairIngredient() {
+		return Ingredient.of(this.repairMaterial);
 	}
 	
 }

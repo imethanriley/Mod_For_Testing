@@ -42,41 +42,41 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes
 	
 	public static Biome makeTropicalIslandBiome(float depth, float scale) {
 	      MobSpawnInfo.Builder SPAWN_SETTINGS = (new MobSpawnInfo.Builder());
-	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244169_a);
+	      BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.BADLANDS);
 	      
 	      //Structures
-	      GENERATION_SETTINGS.withStructure(StructureFeatures.RUINED_PORTAL);
-	      GENERATION_SETTINGS.withStructure(StructureFeatures.VILLAGE_PLAINS);
+	      GENERATION_SETTINGS.addStructureStart(StructureFeatures.RUINED_PORTAL_STANDARD);
+	      GENERATION_SETTINGS.addStructureStart(StructureFeatures.VILLAGE_PLAINS);
 	      
 	      //Features
-	      DefaultBiomeFeatures.withStrongholdAndMineshaft(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withLavaAndWaterLakes(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withMonsterRoom(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withMushroomBiomeVegetation(GENERATION_SETTINGS);
-	      DefaultBiomeFeatures.withLavaAndWaterSprings(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultOverworldLandStructures(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultCarvers(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultLakes(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultMonsterRoom(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultUndergroundVariety(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultOres(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultSoftDisks(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addMushroomFieldVegetation(GENERATION_SETTINGS);
+	      DefaultBiomeFeatures.addDefaultSprings(GENERATION_SETTINGS);
 	      
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 3, 6));
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 2, 6));
-	      SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 20, 4, 8));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 3, 6));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 2, 6));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 20, 4, 8));
 	      
-	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).setEffects((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(0.9F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(SPAWN_SETTINGS.copy()).withGenerationSettings(GENERATION_SETTINGS.build()).build();
+	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).specialEffects((new BiomeAmbience.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(getSkyColorWithTemperatureModifier(0.9F)).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(SPAWN_SETTINGS.build()).generationSettings(GENERATION_SETTINGS.build()).build();
   }
 	
 	private static int getSkyColorWithTemperatureModifier(float temperature) {
 	      float lvt_1_1_ = temperature / 3.0F;
 	      lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
-	      return MathHelper.hsvToRGB(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
+	      return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
 	}
 	
 	@SuppressWarnings("deprecation")
 	public void init(FMLCommonSetupEvent event) {
-		BiomeDictionary.addTypes(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, WorldGenRegistries.BIOME.getKey(biome)), BiomeDictionary.Type.MUSHROOM);
+		BiomeDictionary.addTypes(RegistryKey.create(Registry.BIOME_REGISTRY, WorldGenRegistries.BIOME.getKey(biome)), BiomeDictionary.Type.MUSHROOM);
 		BiomeManager.addBiome(BiomeManager.BiomeType.WARM,
-				new BiomeManager.BiomeEntry(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, WorldGenRegistries.BIOME.getKey(biome)), 500));
+				new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, WorldGenRegistries.BIOME.getKey(biome)), 500));
 	}
 	
 }

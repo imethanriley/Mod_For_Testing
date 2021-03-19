@@ -25,16 +25,16 @@ public abstract class ConstructEntity extends Entity {
         this(entityTypeIn, worldIn);
         this.setLifeTicks(lifeTicksIn);
         this.setCaster(casterIn);
-        this.setPosition(x, y, z);
+        this.setPos(x, y, z);
     }
 
     @Override
-    public void registerData(){
+    public void defineSynchedData(){
 
     }
 
     @Override
-    protected boolean canTriggerWalking() {
+    protected boolean isMovementNoisy() {
         return false;
     }
 
@@ -48,19 +48,19 @@ public abstract class ConstructEntity extends Entity {
     }
 
     @Override
-    public boolean canBeCollidedWith() {
+    public boolean isPickable() {
         return true;
     }
 
     public void setCaster(@Nullable LivingEntity caster) {
         this.caster = caster;
-        this.casterUuid = caster == null ? null : caster.getUniqueID();
+        this.casterUuid = caster == null ? null : caster.getUUID();
     }
 
     @Nullable
     public LivingEntity getCaster() {
-        if (this.caster == null && this.casterUuid != null && this.world instanceof ServerWorld) {
-            Entity entity = ((ServerWorld)this.world).getEntityByUuid(this.casterUuid);
+        if (this.caster == null && this.casterUuid != null && this.level instanceof ServerWorld) {
+            Entity entity = ((ServerWorld)this.level).getEntity(this.casterUuid);
             if (entity instanceof LivingEntity) {
                 this.caster = (LivingEntity)entity;
             }
@@ -70,15 +70,15 @@ public abstract class ConstructEntity extends Entity {
     }
 
     public void faceDirection(Direction directionToFace){
-        float currentRotationYaw = this.rotationYaw;
+        float currentRotationYaw = this.yRot;
 
-        Direction currentDirection = this.getAdjustedHorizontalFacing();
+        Direction currentDirection = this.getMotionDirection();
         float rotationAmount = 0;
         while(currentDirection != directionToFace){
-            currentDirection = currentDirection.rotateY();
+            currentDirection = currentDirection.getClockWise();
             rotationAmount += 90.0F;
         }
-        this.rotationYaw = currentRotationYaw + rotationAmount;
+        this.yRot = currentRotationYaw + rotationAmount;
     }
 
     /**
@@ -89,25 +89,25 @@ public abstract class ConstructEntity extends Entity {
     /**
      * Returns true if it's possible to attack this entity with an item.
      */
-    public boolean canBeAttackedWithItem() {
+    public boolean isAttackable() {
         return false;
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compound) {
+    protected void readAdditionalSaveData(CompoundNBT compound) {
         this.setLifeTicks(compound.getInt("LifeTicks"));
-        if (compound.hasUniqueId("Owner")) {
-            this.casterUuid = compound.getUniqueId("Owner");
+        if (compound.hasUUID("Owner")) {
+            this.casterUuid = compound.getUUID("Owner");
         }
 
     }
 
 
     @Override
-    protected void writeAdditional(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundNBT compound) {
         compound.putInt("LifeTicks", this.getLifeTicks());
         if (this.casterUuid != null) {
-            compound.putUniqueId("Owner", this.casterUuid);
+            compound.putUUID("Owner", this.casterUuid);
         }
     }
 
@@ -120,7 +120,7 @@ public abstract class ConstructEntity extends Entity {
     }
 
     public void handleExistence(){
-        this.func_233566_aG_(); // handles being in water
+        this.updateInWaterStateAndDoFluidPushing(); // handles being in water
     }
 
     public void handleExpiration(){
@@ -135,7 +135,7 @@ public abstract class ConstructEntity extends Entity {
     public void tick() {
         //super.tick();
         this.lifeTicks--;
-        if(!this.world.isRemote() && this.lifeTicks <= 0){
+        if(!this.level.isClientSide() && this.lifeTicks <= 0){
             this.handleExpiration();
         }
         else{

@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 
 public abstract class TropicsBird extends AnimalEntity {
 
-	protected static final Ingredient SEEDS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+	protected static final Ingredient SEEDS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 
 	public float flapLength = 0.0F;
 	public float flapIntensity = 0.0F;
@@ -28,8 +28,8 @@ public abstract class TropicsBird extends AnimalEntity {
 	}
 
 	@Override
-	public void livingTick() {
-		super.livingTick();
+	public void aiStep() {
+		super.aiStep();
 		this.lastFlapLength = this.flapLength;
 		this.lastFlapIntensity = this.flapIntensity;
 		this.flapIntensity = (float) (this.flapIntensity + (this.onGround ? -1 : 4) * 0.3D);
@@ -49,8 +49,8 @@ public abstract class TropicsBird extends AnimalEntity {
 		this.flapSpeed = (float) (this.flapSpeed * 0.9D);
 
 		// don't fall as fast
-		if (!this.onGround && this.getMotion().getY() < 0.0D) {
-			this.setMotion(new Vector3d(getMotion().getX(), getMotion().getY() * 0.6D, getMotion().getZ()));
+		if (!this.onGround && this.getDeltaMovement().y() < 0.0D) {
+			this.setDeltaMovement(new Vector3d(getDeltaMovement().x(), getDeltaMovement().y() * 0.6D, getDeltaMovement().z()));
 		}
 
 		this.flapLength += this.flapSpeed * 2.0F;
@@ -64,11 +64,11 @@ public abstract class TropicsBird extends AnimalEntity {
 	}
 
 	@Override
-	protected void updateFallState(double y, boolean onGroundIn, @Nonnull BlockState state, @Nonnull BlockPos pos) {
+	protected void checkFallDamage(double y, boolean onGroundIn, @Nonnull BlockState state, @Nonnull BlockPos pos) {
 	}
 
 	@Override
-	public boolean onLivingFall(float dist, float damageMultiplier) {
+	public boolean causeFallDamage(float dist, float damageMultiplier) {
 		return false;
 	}
 
@@ -78,7 +78,7 @@ public abstract class TropicsBird extends AnimalEntity {
 	}
 
 	@Override
-	public AnimalEntity func_241840_a(ServerWorld world, AgeableEntity entityanimal) {
+	public AnimalEntity getBreedOffspring(ServerWorld world, AgeableEntity entityanimal) {
 		return null;
 	}
 

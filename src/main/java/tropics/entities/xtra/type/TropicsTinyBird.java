@@ -28,8 +28,8 @@ import net.minecraft.world.World;
 
 public class TropicsTinyBird extends TropicsBird {
 
-	private static final DataParameter<Byte> DATA_BIRDTYPE = EntityDataManager.createKey(TropicsTinyBird.class, DataSerializers.BYTE);
-	private static final DataParameter<Byte> DATA_BIRDFLAGS = EntityDataManager.createKey(TropicsTinyBird.class, DataSerializers.BYTE);
+	private static final DataParameter<Byte> DATA_BIRDTYPE = EntityDataManager.defineId(TropicsTinyBird.class, DataSerializers.BYTE);
+	private static final DataParameter<Byte> DATA_BIRDFLAGS = EntityDataManager.defineId(TropicsTinyBird.class, DataSerializers.BYTE);
 
 	// [VanillaCopy] EntityBat field
 	//private BlockPos spawnPosition;
@@ -37,7 +37,7 @@ public class TropicsTinyBird extends TropicsBird {
 
 	public TropicsTinyBird(EntityType<? extends TropicsTinyBird> type, World world) {
 		super(type, world);
-		setBirdType(rand.nextInt(4));
+		setBirdType(random.nextInt(4));
 		setIsBirdLanded(true);
 	}
 
@@ -53,78 +53,78 @@ public class TropicsTinyBird extends TropicsBird {
 	}
 
 	@Override
-	protected void registerData() {
-		super.registerData();
-		dataManager.register(DATA_BIRDTYPE, (byte) 0);
-		dataManager.register(DATA_BIRDFLAGS, (byte) 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		entityData.define(DATA_BIRDTYPE, (byte) 0);
+		entityData.define(DATA_BIRDFLAGS, (byte) 0);
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return MobEntity.func_233666_p_()
-				.createMutableAttribute(Attributes.MAX_HEALTH, 1.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.20000001192092896D);
+		return MobEntity.createMobAttributes()
+				.add(Attributes.MAX_HEALTH, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.20000001192092896D);
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound) {
-		super.writeAdditional(compound);
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
 		compound.putInt("BirdType", this.getBirdType());
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
 		this.setBirdType(compound.getInt("BirdType"));
 	}
 
 	public int getBirdType() {
-		return dataManager.get(DATA_BIRDTYPE);
+		return entityData.get(DATA_BIRDTYPE);
 	}
 
 	public void setBirdType(int type) {
-		dataManager.set(DATA_BIRDTYPE, (byte) type);
+		entityData.set(DATA_BIRDTYPE, (byte) type);
 	}
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_PARROT_AMBIENT;
+		return SoundEvents.PARROT_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_PARROT_HURT;
+		return SoundEvents.PARROT_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_PARROT_DEATH;
+		return SoundEvents.PARROT_DEATH;
 	}
 
 	@Override
 	public float getEyeHeight(Pose pose) {
-		return this.getHeight() * 0.7F;
+		return this.getBbHeight() * 0.7F;
 	}
 
 	@Override
-	public boolean canDespawn(double p_213397_1_) {
+	public boolean removeWhenFarAway(double p_213397_1_) {
 		return false;
 	}
 
 	@Override
-	public float getBlockPathWeight(BlockPos pos) {
+	public float getWalkTargetValue(BlockPos pos) {
 		// prefer standing on leaves
-		Material underMaterial = this.world.getBlockState(pos.down()).getMaterial();
+		Material underMaterial = this.level.getBlockState(pos.below()).getMaterial();
 		if (underMaterial == Material.LEAVES) {
 			return 200.0F;
 		}
 		if (underMaterial == Material.WOOD) {
 			return 15.0F;
 		}
-		if (underMaterial == Material.ORGANIC) {
+		if (underMaterial == Material.GRASS) {
 			return 9.0F;
 		}
 		// default to just preferring lighter areas
-		return this.world.getLight(pos) - 0.5F;
+		return this.level.getMaxLocalRawBrightness(pos) - 0.5F;
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class TropicsTinyBird extends TropicsBird {
 		super.tick();
 		// while we are flying, try to level out somewhat
 		if (!this.isBirdLanded()) {
-			this.setMotion(this.getMotion().mul(1.0F, 0.6000000238418579D, 1.0F));
+			this.setDeltaMovement(this.getDeltaMovement().multiply(1.0F, 0.6000000238418579D, 1.0F));
 		}
 	}
 	
@@ -199,39 +199,39 @@ public class TropicsTinyBird extends TropicsBird {
 */
 	public boolean isSpooked() {
 		if (this.hurtTime > 0) return true;
-		PlayerEntity closestPlayer = this.world.getClosestPlayer(this, 4.0D);
+		PlayerEntity closestPlayer = this.level.getNearestPlayer(this, 4.0D);
 		return closestPlayer != null
-				&& !SEEDS.test(closestPlayer.getHeldItemMainhand())
-				&& !SEEDS.test(closestPlayer.getHeldItemOffhand());
+				&& !SEEDS.test(closestPlayer.getMainHandItem())
+				&& !SEEDS.test(closestPlayer.getOffhandItem());
 	}
 
 	public boolean isLandableBlock(BlockPos pos) {
-		BlockState state = world.getBlockState(pos);
+		BlockState state = level.getBlockState(pos);
 		Block block = state.getBlock();
-		return !block.isAir(state, world, pos)
-				&& (block.isIn(BlockTags.LEAVES) || state.isSolidSide(world, pos, Direction.UP));
+		return !block.isAir(state, level, pos)
+				&& (block.is(BlockTags.LEAVES) || state.isFaceSturdy(level, pos, Direction.UP));
 	}
 
 	@Override
 	public boolean isBirdLanded() {
-		return (dataManager.get(DATA_BIRDFLAGS) & 1) != 0;
+		return (entityData.get(DATA_BIRDFLAGS) & 1) != 0;
 	}
 
 	public void setIsBirdLanded(boolean landed) {
-		byte flags = dataManager.get(DATA_BIRDFLAGS);
-		dataManager.set(DATA_BIRDFLAGS, (byte) (landed ? flags | 1 : flags & ~1));
+		byte flags = entityData.get(DATA_BIRDFLAGS);
+		entityData.set(DATA_BIRDFLAGS, (byte) (landed ? flags | 1 : flags & ~1));
 	}
 
 	@Override
-	public boolean canBePushed() {
+	public boolean isPushable() {
 		return true;
 	}
 
 	@Override
-	protected void collideWithEntity(Entity entity) {
+	protected void doPush(Entity entity) {
 	}
 
 	@Override
-	protected void collideWithNearbyEntities() {
+	protected void pushEntities() {
 	}
 }

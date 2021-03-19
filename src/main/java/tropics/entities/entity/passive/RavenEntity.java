@@ -32,12 +32,12 @@ public class RavenEntity extends TropicsTinyBird {
 	public RavenEntity(EntityType<? extends RavenEntity> type, World world) {
 		super(type, world);
 		
-		this.moveController = new FlyingMovementController(this, 10, false);
-	    this.setPathPriority(PathNodeType.DANGER_FIRE, -1.0F);
-	    this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
-	    this.setPathPriority(PathNodeType.COCOA, -1.0F);
+		this.moveControl = new FlyingMovementController(this, 10, false);
+	    this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
+	    this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+	    this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
 		
-		this.stepHeight = 1;
+		this.maxUpStep = 1;
 	}
 	
 	protected void registerGoals() {
@@ -50,28 +50,28 @@ public class RavenEntity extends TropicsTinyBird {
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 	}
 	
-	public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 3).createMutableAttribute(Attributes.FLYING_SPEED, (double)0.4F).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F);
+	public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3).add(Attributes.FLYING_SPEED, (double)0.4F).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 	
-	protected PathNavigator createNavigator(World worldIn) {
+	protected PathNavigator createNavigation(World worldIn) {
 	    FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
 	    flyingpathnavigator.setCanOpenDoors(false);
-	    flyingpathnavigator.setCanSwim(true);
-	    flyingpathnavigator.setCanEnterDoors(true);
+	    flyingpathnavigator.setCanFloat(true);
+	    flyingpathnavigator.setCanPassDoors(true);
 	    return flyingpathnavigator;
 	}
 	
-	public boolean onLivingFall(float distance, float damageMultiplier) {
+	public boolean causeFallDamage(float distance, float damageMultiplier) {
 	    return false;
 	}
 
-	    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+	    protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
 	}
 	
 	@Override
 	public float getEyeHeight(Pose pose) {
-		return this.getHeight() * 0.75F;
+		return this.getBbHeight() * 0.75F;
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class RavenEntity extends TropicsTinyBird {
 
     private static boolean isSourceBlock(IWorld world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-        return state.getBlock() instanceof FlowingFluidBlock && world.getFluidState(pos).isTagged(FluidTags.WATER) && state.get(FlowingFluidBlock.LEVEL) == 0;
+        return state.getBlock() instanceof FlowingFluidBlock && world.getFluidState(pos).is(FluidTags.WATER) && state.getValue(FlowingFluidBlock.LEVEL) == 0;
     }
 
 

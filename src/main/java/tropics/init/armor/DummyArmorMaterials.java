@@ -23,34 +23,34 @@ public interface DummyArmorMaterials {
 	});
 
 	static DummyArmorMaterials instance() {
-		return INSTANCE.getValue();
+		return INSTANCE.get();
 	}
 	
 	IArmorMaterial DUMMY_ARMOR_MATERIAL = new IArmorMaterial() {
 		@Override
-		public int getDurability(@Nonnull EquipmentSlotType slot) {
+		public int getDurabilityForSlot(@Nonnull EquipmentSlotType slot) {
 			return 0;
 		}
 
 		@Override
-		public int getDamageReductionAmount(@Nonnull EquipmentSlotType slot) {
+		public int getDefenseForSlot(@Nonnull EquipmentSlotType slot) {
 			return 0;
 		}
 
 		@Override
-		public int getEnchantability() {
+		public int getEnchantmentValue() {
 			return 0;
 		}
 
 		@Nonnull
 		@Override
-		public SoundEvent getSoundEvent() {
-			return SoundEvents.ITEM_ARMOR_EQUIP_LEATHER;
+		public SoundEvent getEquipSound() {
+			return SoundEvents.ARMOR_EQUIP_LEATHER;
 		}
 
 		@Nonnull
 		@Override
-		public Ingredient getRepairMaterial() {
+		public Ingredient getRepairIngredient() {
 			return Ingredient.EMPTY;
 		}
 
@@ -72,33 +72,33 @@ public interface DummyArmorMaterials {
 
 	IItemTier DUMMY_ITEM_TIER = new IItemTier() {
 		@Override
-		public int getMaxUses() {
+		public int getUses() {
 			return 0;
 		}
 
 		@Override
-		public float getEfficiency() {
+		public float getSpeed() {
 			return 0;
 		}
 
 		@Override
-		public float getAttackDamage() {
+		public float getAttackDamageBonus() {
 			return 0;
 		}
 
 		@Override
-		public int getHarvestLevel() {
+		public int getLevel() {
 			return 0;
 		}
 
 		@Override
-		public int getEnchantability() {
+		public int getEnchantmentValue() {
 			return 0;
 		}
 
 		@Nonnull
 		@Override
-		public Ingredient getRepairMaterial() {
+		public Ingredient getRepairIngredient() {
 			return Ingredient.EMPTY;
 		}
 	};

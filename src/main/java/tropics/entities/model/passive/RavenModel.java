@@ -23,72 +23,72 @@ public class RavenModel extends SegmentedModel<RavenEntity> {
 	private final ModelRenderer tail;
 
 	public RavenModel() {
-		textureWidth = 32;
-		textureHeight = 32;
+		texWidth = 32;
+		texHeight = 32;
 
 		head = new ModelRenderer(this);
-		head.setRotationPoint(0.0F, 18.0F, 0.0F);
-		head.setTextureOffset(0, 0).addBox(-1.5F, -1.5F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, true);
+		head.setPos(0.0F, 18.0F, 0.0F);
+		head.texOffs(0, 0).addBox(-1.5F, -1.5F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, true);
 
 		beak1 = new ModelRenderer(this);
-		beak1.setRotationPoint(0.0F, 0.0F, -2.5F);
+		beak1.setPos(0.0F, 0.0F, -2.5F);
 		head.addChild(beak1);
 		setRotationAngle(beak1, 0.2618F, 0.0F, 0.0F);
-		beak1.setTextureOffset(12, 0).addBox(-0.5F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+		beak1.texOffs(12, 0).addBox(-0.5F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
 
 		beak2 = new ModelRenderer(this);
-		beak2.setRotationPoint(0.0F, 0.0F, -2.5F);
+		beak2.setPos(0.0F, 0.0F, -2.5F);
 		head.addChild(beak2);
 		setRotationAngle(beak2, -0.2618F, 0.0F, 0.0F);
-		beak2.setTextureOffset(12, 0).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+		beak2.texOffs(12, 0).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
 
 		body = new ModelRenderer(this);
-		body.setRotationPoint(0.0F, 17.0F, 1.0F);
+		body.setPos(0.0F, 17.0F, 1.0F);
 		setRotationAngle(body, -0.5236F, 0.0F, 0.0F);
-		body.setTextureOffset(0, 6).addBox(-1.5F, 0.0F, -1.0F, 3.0F, 4.0F, 6.0F, 0.0F, false);
+		body.texOffs(0, 6).addBox(-1.5F, 0.0F, -1.0F, 3.0F, 4.0F, 6.0F, 0.0F, false);
 
 		rightarm = new ModelRenderer(this);
-		rightarm.setRotationPoint(-1.5F, 18.0F, 1.0F);
-		rightarm.setTextureOffset(0, 16).addBox(-1.0F, 0.0F, -1.5F, 1.0F, 3.0F, 6.0F, 0.0F, false);
+		rightarm.setPos(-1.5F, 18.0F, 1.0F);
+		rightarm.texOffs(0, 16).addBox(-1.0F, 0.0F, -1.5F, 1.0F, 3.0F, 6.0F, 0.0F, false);
 
 		leftarm = new ModelRenderer(this);
-		leftarm.setRotationPoint(1.5F, 18.0F, 1.0F);
-		leftarm.setTextureOffset(0, 16).addBox(0.0F, 0.0F, -1.5F, 1.0F, 3.0F, 6.0F, 0.0F, false);
+		leftarm.setPos(1.5F, 18.0F, 1.0F);
+		leftarm.texOffs(0, 16).addBox(0.0F, 0.0F, -1.5F, 1.0F, 3.0F, 6.0F, 0.0F, false);
 
 		rightleg = new ModelRenderer(this);
-		rightleg.setRotationPoint(-1.5F, 21.0F, 1.0F);
-		rightleg.setTextureOffset(14, 16).addBox(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, false);
+		rightleg.setPos(-1.5F, 21.0F, 1.0F);
+		rightleg.texOffs(14, 16).addBox(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
 		rightfoot = new ModelRenderer(this);
-		rightfoot.setRotationPoint(0.0F, 2.0F, 1.0F);
+		rightfoot.setPos(0.0F, 2.0F, 1.0F);
 		rightleg.addChild(rightfoot);
 		setRotationAngle(rightfoot, 0.5236F, 0.0F, 0.0F);
-		rightfoot.setTextureOffset(14, 20).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+		rightfoot.texOffs(14, 20).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
 
 		leftleg = new ModelRenderer(this);
-		leftleg.setRotationPoint(0.5F, 21.0F, 1.0F);
-		leftleg.setTextureOffset(14, 16).addBox(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, false);
+		leftleg.setPos(0.5F, 21.0F, 1.0F);
+		leftleg.texOffs(14, 16).addBox(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
 		leftfoot = new ModelRenderer(this);
-		leftfoot.setRotationPoint(0.0F, 2.0F, 1.0F);
+		leftfoot.setPos(0.0F, 2.0F, 1.0F);
 		leftleg.addChild(leftfoot);
 		setRotationAngle(leftfoot, 0.5236F, 0.0F, 0.0F);
-		leftfoot.setTextureOffset(14, 20).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+		leftfoot.texOffs(14, 20).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
 
 		tail = new ModelRenderer(this);
-		tail.setRotationPoint(0.0F, 21.0F, 4.0F);
+		tail.setPos(0.0F, 21.0F, 4.0F);
 		setRotationAngle(tail, -0.5236F, 0.0F, 0.0F);
-		tail.setTextureOffset(0, 25).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		tail.texOffs(0, 25).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 1.0F, 3.0F, 0.0F, false);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
+		modelRenderer.xRot = x;
+		modelRenderer.yRot = y;
+		modelRenderer.zRot = z;
 	}
 
 	@Override
-	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		head.render(matrixStack, buffer, packedLight, packedOverlay);
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 		rightarm.render(matrixStack, buffer, packedLight, packedOverlay);
@@ -99,32 +99,32 @@ public class RavenModel extends SegmentedModel<RavenEntity> {
 	}
 	
 	@Override
-	public void setRotationAngles(RavenEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        head.rotateAngleX = headPitch / (180F / (float) Math.PI);
-        head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
-        head.rotateAngleZ = netHeadYaw > 5 ? -0.2617994F : 0;
+	public void setupAnim(RavenEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        head.xRot = headPitch / (180F / (float) Math.PI);
+        head.yRot = netHeadYaw / (180F / (float) Math.PI);
+        head.zRot = netHeadYaw > 5 ? -0.2617994F : 0;
 
-        rightleg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        leftleg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        rightleg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        leftleg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         
         
     	if(entity.isOnGround() == false) {
-    		rightarm.rotateAngleZ = MathHelper.cos(limbSwing * 4F) * 3F * limbSwingAmount;
-            leftarm.rotateAngleZ = -MathHelper.cos(limbSwing * 4F) * 3F * limbSwingAmount;
+    		rightarm.zRot = MathHelper.cos(limbSwing * 4F) * 3F * limbSwingAmount;
+            leftarm.zRot = -MathHelper.cos(limbSwing * 4F) * 3F * limbSwingAmount;
     	}
 
         if (entity.isOnGround()) {
-            rightleg.rotationPointY = 21;
-            leftleg.rotationPointY = 21;
-            rightarm.rotateAngleZ = 0.05f;
-            leftarm.rotateAngleZ = -0.05f;
+            rightleg.y = 21;
+            leftleg.y = 21;
+            rightarm.zRot = 0.05f;
+            leftarm.zRot = -0.05f;
         } else {
-            rightleg.rotationPointY = 20F;
-            leftleg.rotationPointY = 20F;
+            rightleg.y = 20F;
+            leftleg.y = 20F;
         }
     }
 
-	public Iterable<ModelRenderer> getParts() {
+	public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(
                 head,
                 body,
