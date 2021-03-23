@@ -47,11 +47,11 @@ public class BiomeGeneration {
 		
 		protected final BiomeGeneration biomes;
 		
-		protected final int sortid;
+		protected final int sortID;
 		
-		public TropicsBiomes(BiomeGeneration biomes, int sortid) {
+		public TropicsBiomes(BiomeGeneration biomes, int sortID) {
 			this.biomes = biomes;
-			this.sortid = sortid;
+			this.sortID = sortID;
 		}
 
 		public void initBiomes() { }
@@ -60,7 +60,7 @@ public class BiomeGeneration {
 
 		@Override
 		public int compareTo(TropicsBiomes other) {
-			return this.sortid - other.sortid;
+			return this.sortID - other.sortID;
 		}
 	}
 }

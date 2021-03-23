@@ -31,6 +31,7 @@ public class TropicsItems {
 	//Blocks
 	public static Item dominus_ore;
 	public static Item volcanic_block;
+	public static Item test_block;
 	
 	//Tools
 	public static Item volcanic_axe;
@@ -105,11 +106,11 @@ public class TropicsItems {
 		
 		Tropics.LOGGER.info("Items registered");
 	}
-	
+
 	public static Item.Properties defaultBuilder() {
 		return new Item.Properties().tab(Tropics.TROPICS);
 	}
-	
+
 	private static Item.Properties unstackable() {
 		return defaultBuilder().stacksTo(1);
 	}
