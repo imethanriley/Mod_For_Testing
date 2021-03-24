@@ -1,7 +1,6 @@
 package tropics.init.items;
 
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
@@ -16,22 +15,21 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import tropics.Tropics;
 import tropics.init.TropicsEntities;
-import tropics.init.TropicsToolMaterials;
-import tropics.init.armor.TropicsArmorMaterials;
+import tropics.init.armor.ModArmorMaterials;
 import tropics.init.armor.dominus.ItemDominusArmor;
 import tropics.init.armor.dominus.ItemDominusHelm;
+import tropics.init.armor.volcanic.ItemVolcanicArmor;
 import tropics.init.blocks.TropicsBlocks;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class TropicsItems {
 	//Items
-	public static Item volcanic_ingot;
+	public static final Item VOLCANIC_INGOT = new Item(new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_ingot"));
 	public static Item dominus_ingot;
 	
 	//Blocks
 	public static Item dominus_ore;
 	public static Item volcanic_block;
-	public static Item test_block;
 	
 	//Tools
 	public static Item volcanic_axe;
@@ -65,25 +63,25 @@ public class TropicsItems {
 		event.getRegistry().registerAll
 		(
 			//Items
-			volcanic_ingot = new Item(new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_ingot")),
+			VOLCANIC_INGOT,
 			dominus_ingot = new Item(new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("dominus_ingot")),
 
 			//Block Items
-			dominus_ore = new BlockItem(TropicsBlocks.dominus_ore, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(TropicsBlocks.dominus_ore.getRegistryName()),
-			volcanic_block = new BlockItem(TropicsBlocks.volcanic_block, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(TropicsBlocks.volcanic_block.getRegistryName()),
+			dominus_ore = new BlockItem(TropicsBlocks.dominus_ore, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("dominus_ore")),
+			volcanic_block = new BlockItem(TropicsBlocks.volcanic_block, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_block")),
 			
 			//Tools
-			volcanic_axe = new AxeItem(TropicsToolMaterials.volcanic, +7f, -3f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_axe")),
-			volcanic_hoe = new HoeItem(TropicsToolMaterials.volcanic, -1, 0f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_hoe")),
-			volcanic_pickaxe = new PickaxeItem(TropicsToolMaterials.volcanic, +3, -2.8f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_pickaxe")),
-			volcanic_shovel = new ShovelItem(TropicsToolMaterials.volcanic, +3.5f, -3f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_shovel")),
-			volcanic_sword = new SwordItem(TropicsToolMaterials.volcanic, +5, -2.4f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_sword")),
+			volcanic_axe = new AxeItem(ModToolMaterials.ItemTier.VOLCANIC, +7f, -3f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_axe")),
+			volcanic_hoe = new HoeItem(ModToolMaterials.ItemTier.VOLCANIC, -1, 0f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_hoe")),
+			volcanic_pickaxe = new PickaxeItem(ModToolMaterials.ItemTier.VOLCANIC, +3, -2.8f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_pickaxe")),
+			volcanic_shovel = new ShovelItem(ModToolMaterials.ItemTier.VOLCANIC, +3.5f, -3f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_shovel")),
+			volcanic_sword = new SwordItem(ModToolMaterials.ItemTier.VOLCANIC, +5, -2.4f, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_sword")),
 		
 			//Armor			
-			volcanic_helmet = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.HEAD, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_helmet")),
-			volcanic_chestplate = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.CHEST, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_chestplate")),
-			volcanic_leggings = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.LEGS, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_leggings")),
-			volcanic_boots = new ArmorItem(TropicsArmorMaterials.volcanic, EquipmentSlotType.FEET, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_boots")),
+			volcanic_helmet = new ItemVolcanicArmor(ModArmorMaterials.ArmorMaterial.VOLCANIC, EquipmentSlotType.HEAD, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_helmet")),
+			volcanic_chestplate = new ItemVolcanicArmor(ModArmorMaterials.ArmorMaterial.VOLCANIC, EquipmentSlotType.CHEST, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_chestplate")),
+			volcanic_leggings = new ItemVolcanicArmor(ModArmorMaterials.ArmorMaterial.VOLCANIC, EquipmentSlotType.LEGS, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_leggings")),
+			volcanic_boots = new ItemVolcanicArmor(ModArmorMaterials.ArmorMaterial.VOLCANIC, EquipmentSlotType.FEET, new Item.Properties().tab(Tropics.TROPICS)).setRegistryName(Tropics.location("volcanic_boots")),
 			
 			dominus_helmet = new ItemDominusHelm(unstackable()).setRegistryName(Tropics.location("dominus_helmet")),
 			dominus_chestplate = new ItemDominusArmor(EquipmentSlotType.CHEST, unstackable()).setRegistryName(Tropics.location("dominus_chestplate")),

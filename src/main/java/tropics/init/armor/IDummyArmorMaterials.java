@@ -11,18 +11,18 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import tropics.Tropics;
 
-public interface DummyArmorMaterials {
+public interface IDummyArmorMaterials {
 
-	LazyValue<DummyArmorMaterials> INSTANCE = new LazyValue<>(() -> {
+	LazyValue<IDummyArmorMaterials> INSTANCE = new LazyValue<>(() -> {
 		try {
-			return (DummyArmorMaterials) Class.forName("tropics.init.armor.ModArmorMaterials").newInstance();
+			return (IDummyArmorMaterials) Class.forName("tropics.init.armor.ModArmorMaterials").newInstance();
 		} catch (ReflectiveOperationException e) {
 			Tropics.LOGGER.warn("Unable to find ModArmorMaterials, using a dummy");
-			return new DummyArmorMaterials() {};
+			return new IDummyArmorMaterials() {};
 		}
 	});
 
-	static DummyArmorMaterials instance() {
+	static IDummyArmorMaterials instance() {
 		return INSTANCE.get();
 	}
 	
@@ -70,53 +70,16 @@ public interface DummyArmorMaterials {
 		}
 	};
 
-	IItemTier DUMMY_ITEM_TIER = new IItemTier() {
-		@Override
-		public int getUses() {
-			return 0;
-		}
-
-		@Override
-		public float getSpeed() {
-			return 0;
-		}
-
-		@Override
-		public float getAttackDamageBonus() {
-			return 0;
-		}
-
-		@Override
-		public int getLevel() {
-			return 0;
-		}
-
-		@Override
-		public int getEnchantmentValue() {
-			return 0;
-		}
-
-		@Nonnull
-		@Override
-		public Ingredient getRepairIngredient() {
-			return Ingredient.EMPTY;
-		}
-	};
-
 	default IArmorMaterial getDummyArmorMaterial() {
 		return DUMMY_ARMOR_MATERIAL;
 	}
-	
-	default IArmorMaterial getDominusArmorMaterial() {
+
+	default IArmorMaterial getVolcanicArmorMaterial() {
 		return DUMMY_ARMOR_MATERIAL;
 	}
-	
-	default IItemTier getDummyItemTier() {
-		return DUMMY_ITEM_TIER;
-	}
-	
-	default IItemTier getDominusItemTier() {
-		return DUMMY_ITEM_TIER;
+
+	default IArmorMaterial getDominusArmorMaterial() {
+		return DUMMY_ARMOR_MATERIAL;
 	}
 	
 }

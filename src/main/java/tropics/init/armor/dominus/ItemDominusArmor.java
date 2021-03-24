@@ -13,9 +13,7 @@ import net.minecraft.util.LazyValue;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import tropics.init.armor.DummyArmorMaterials;
-
-import net.minecraft.item.Item.Properties;
+import tropics.init.armor.IDummyArmorMaterials;
 
 public class ItemDominusArmor extends ArmorItem {
 
@@ -23,7 +21,7 @@ public class ItemDominusArmor extends ArmorItem {
 	public final EquipmentSlotType type;
 
 	public ItemDominusArmor(EquipmentSlotType type, Properties props) {
-		this(type, DummyArmorMaterials.instance().getDominusArmorMaterial(), props);
+		this(type, IDummyArmorMaterials.instance().getDominusArmorMaterial(), props);
 	}
 	
 	@SuppressWarnings("deprecation")

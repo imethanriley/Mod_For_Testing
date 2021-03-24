@@ -13,11 +13,11 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import tropics.init.items.TropicsItems;
 
-public class ModArmorMaterials implements DummyArmorMaterials 
+public class ModArmorMaterials implements IDummyArmorMaterials
 {
 
-	private enum ArmorMaterial implements IArmorMaterial {
-		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.volcanic_ingot, 2.0f),
+	public enum ArmorMaterial implements IArmorMaterial {
+		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.VOLCANIC_INGOT, 2.0f),
 		DOMINUS("dominus", 34, new int[] { 3, 6, 8, 3 }, 26, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.dominus_ingot, 3);
 
 		private final String name;
@@ -83,74 +83,14 @@ public class ModArmorMaterials implements DummyArmorMaterials
 		}
 	}
 
-	private enum ItemTier implements IItemTier {
-		VOLCANIC(2300, 9, 3, 4, 26, () -> TropicsItems.volcanic_ingot),
-		DOMINUS(2300, 9, 3, 4, 26, () -> TropicsItems.dominus_ingot);
-
-		private final int maxUses;
-		private final float efficiency;
-		private final float attackDamage;
-		private final int harvestLevel;
-		private final int enchantability;
-		private final Supplier<Item> repairItem;
-
-		ItemTier(int maxUses, float efficiency, float attackDamage, int harvestLevel, int enchantability, Supplier<Item> repairItem) {
-			this.maxUses = maxUses;
-			this.efficiency = efficiency;
-			this.attackDamage = attackDamage;
-			this.harvestLevel = harvestLevel;
-			this.enchantability = enchantability;
-			this.repairItem = repairItem;
-		}
-
-		@Override
-		public int getUses() {
-			return maxUses;
-		}
-
-		@Override
-		public float getSpeed() {
-			return efficiency;
-		}
-
-		@Override
-		public float getAttackDamageBonus() {
-			return attackDamage;
-		}
-
-		@Override
-		public int getLevel() {
-			return harvestLevel;
-		}
-
-		@Override
-		public int getEnchantmentValue() {
-			return enchantability;
-		}
-
-		@Override
-		public Ingredient getRepairIngredient() {
-			return Ingredient.of(repairItem.get());
-		}
+	@Override
+	public IArmorMaterial getVolcanicArmorMaterial() {
+		return ArmorMaterial.VOLCANIC;
 	}
-	
-	//@Override
-	//public IArmorMaterial getVolcanicArmorMaterial() {
-	//	return ArmorMaterial.VOLCANIC;
-	//}
-	
-	//@Override
-	//public IItemTier getVolcanicItemTier() {
-	//	return ItemTier.VOLCANIC;
-	//}
-	
+
 	@Override
 	public IArmorMaterial getDominusArmorMaterial() {
 		return ArmorMaterial.DOMINUS;
 	}
-	
-	@Override
-	public IItemTier getDominusItemTier() {
-		return ItemTier.DOMINUS;
-	}
+
 }
