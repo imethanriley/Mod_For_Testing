@@ -13,7 +13,7 @@ import net.minecraft.util.LazyValue;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import tropics.init.armor.IDummyArmorMaterials;
+import tropics.init.armor.materials.IDummyArmorMaterials;
 
 public class ItemDominusArmor extends ArmorItem {
 

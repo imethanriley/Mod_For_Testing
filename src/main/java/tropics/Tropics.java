@@ -11,7 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import tropics.init.blocks.TropicsBlocks;
+import tropics.init.blocks.ModBlocks;
 import tropics.world.generation.BiomeGeneration;
 import tropics.world.generation.OreGeneration;
 
@@ -38,10 +38,6 @@ public class Tropics
 	{
 		LOGGER.info("** BEGINNING SETUP METHOD **");
 		
-		//Dimension Generation
-
-		//LOGGER.info("-- DIMENSIONS GENERATED --");
-		
 		//Biome World Generation
 		biomes.getBiomes().forEach(biome -> biome.init(event));	
 		LOGGER.info("-- BIOMES GENERATED --");
@@ -57,7 +53,7 @@ public class Tropics
 	public static final ItemGroup TROPICS = new ItemGroup("tropicsTab") {
         @Override
         public ItemStack makeIcon() {
-        	return new ItemStack(Item.BY_BLOCK.get(TropicsBlocks.dominus_ore));
+        	return new ItemStack(Item.BY_BLOCK.get(ModBlocks.DOMINUS_ORE));
         }
     };
 	

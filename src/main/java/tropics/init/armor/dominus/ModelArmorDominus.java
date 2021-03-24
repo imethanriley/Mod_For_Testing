@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 //import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
-import tropics.init.armor.ModelArmor;
+import tropics.init.armor.materials.ModelArmor;
 
 public class ModelArmorDominus extends /*BipedModel<LivingEntity>*/ ModelArmor 
 {

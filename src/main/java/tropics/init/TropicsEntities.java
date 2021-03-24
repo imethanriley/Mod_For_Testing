@@ -24,26 +24,35 @@ public class TropicsEntities {
 	public static final EntityType<RavenEntity> RAVEN = EntityType.Builder.<RavenEntity>of(RavenEntity::new, EntityClassification.CREATURE).sized(0.5f, 0.5f).build(Tropics.MOD_ID + ":raven");
 	public static final EntityType<PoisonDartFrogEntity> POISON_DART_FROG = EntityType.Builder.<PoisonDartFrogEntity>of(PoisonDartFrogEntity::new, EntityClassification.CREATURE).sized(0.45f, 0.45f).build(Tropics.MOD_ID + ":poison_dart_frog");
 	
-	//Projectiles
+	//Other
 	public static final EntityType<MineEntity> MINE = EntityType.Builder.<MineEntity>of(MineEntity::new, EntityClassification.MISC).sized(0.5f, 0.5f).build(Tropics.MOD_ID + ":mine");
 	
 
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
-		IForgeRegistry<EntityType<?>> reg = event.getRegistry();
-		
+
 		VULCAN.setRegistryName(Tropics.MOD_ID, "vulcan");
+
 		ANGLER_FISH.setRegistryName(Tropics.MOD_ID, "angler_fish");
 		RAVEN.setRegistryName(Tropics.MOD_ID, "raven");
 		POISON_DART_FROG.setRegistryName(Tropics.MOD_ID, "poison_dart_frog");
+
 		MINE.setRegistryName(Tropics.MOD_ID, "mine");
-		
-		reg.register(VULCAN);
-		reg.register(ANGLER_FISH);
-		reg.register(RAVEN);
-		reg.register(POISON_DART_FROG);
-		reg.register(MINE);
-		
+
+		event.getRegistry().registerAll
+		(
+			//Bosses
+				VULCAN,
+
+			//Passive Mobs
+				ANGLER_FISH,
+				RAVEN,
+				POISON_DART_FROG,
+
+			//Other
+				MINE
+		);
+
 		GlobalEntityTypeAttributes.put(VULCAN, VulcanEntity.registerAttributes().build());
 		GlobalEntityTypeAttributes.put(ANGLER_FISH, AnglerFishEntity.registerAttributes().build());
 		GlobalEntityTypeAttributes.put(RAVEN, RavenEntity.registerAttributes().build());

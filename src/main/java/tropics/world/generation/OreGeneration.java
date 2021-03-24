@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import tropics.Tropics;
-import tropics.init.blocks.TropicsBlocks;
+import tropics.init.blocks.ModBlocks;
 
 @Mod.EventBusSubscriber
 public class OreGeneration 
@@ -29,26 +29,26 @@ public class OreGeneration
     
     public static void registerOre()
     {
-    	//BASE_STONE_OVERWORLD is for generating in stone, granite, diorite, and andesite
+    	//NATURAL_STONE is for generating in stone, granite, diorite, and andesite
         //NETHERRACK is for generating in netherrack
         //BASE_STONE_NETHER is for generating in netherrack, basalt and blackstone
-    	
+    	//END_STONE is for generating in end stone
     	
     	//Overworld Ore Register
-    	OVERWORLD_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+    	OVERWORLD_ORES.add(register("dominus_ore", Feature.ORE.configured(new OreFeatureConfig(
+                OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.DOMINUS_ORE.getBlock().defaultBlockState(), 12)) //Vein Size
                 .range(128).squared() //Spawn height start
                 .count(64))); //Chunk spawn frequency
         
       //Nether Ore Register
-    	NETHER_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NETHERRACK, TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+    	NETHER_ORES.add(register("dominus_ore", Feature.ORE.configured(new OreFeatureConfig(
+                OreFeatureConfig.FillerBlockType.NETHERRACK, ModBlocks.DOMINUS_ORE.getBlock().defaultBlockState(), 12)) //Vein Size
                 .range(128).squared() //Spawn height start
                 .count(64))); //Chunk spawn frequency
  
         //The End Ore Register
-    	END_ORES.add(register("test_block", Feature.ORE.configured(new OreFeatureConfig(
-                new BlockMatchRuleTest(Blocks.END_STONE), TropicsBlocks.dominus_ore.getBlock().defaultBlockState(), 12)) //Vein Size
+    	END_ORES.add(register("dominus_ore", Feature.ORE.configured(new OreFeatureConfig(
+                new BlockMatchRuleTest(Blocks.END_STONE), ModBlocks.DOMINUS_ORE.getBlock().defaultBlockState(), 12)) //Vein Size
                 .range(128).squared() //Spawn height start
                 .count(64))); //Chunk spawn frequency
         

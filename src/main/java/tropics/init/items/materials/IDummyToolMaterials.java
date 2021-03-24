@@ -1,10 +1,9 @@
-package tropics.init.items;
+package tropics.init.items.materials;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import tropics.Tropics;
-import tropics.init.armor.IDummyArmorMaterials;
 
 import javax.annotation.Nonnull;
 

@@ -1,24 +1,19 @@
-package tropics.init.items;
+package tropics.init.items.materials;
 
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
-
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import tropics.init.items.TropicsItems;
+import tropics.init.items.ModItems;
+import tropics.init.items.materials.IDummyToolMaterials;
 
 public class ModToolMaterials implements IDummyToolMaterials
 {
 
     public enum ItemTier implements IItemTier {
-        VOLCANIC(2300, 9, 3, 4, 26, () -> TropicsItems.VOLCANIC_INGOT),
-        DOMINUS(2300, 9, 3, 4, 26, () -> TropicsItems.dominus_ingot);
+        VOLCANIC(2300, 9, 3, 4, 26, () -> ModItems.VOLCANIC_INGOT),
+        DOMINUS(2300, 9, 3, 4, 26, () -> ModItems.DOMINUS_INGOT);
 
         private final int maxUses;
         private final float efficiency;

@@ -1,4 +1,4 @@
-package tropics.init.armor;
+package tropics.init.armor.materials;
 
 import java.util.function.Supplier;
 
@@ -6,19 +6,18 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import tropics.init.items.TropicsItems;
+import tropics.init.items.ModItems;
 
 public class ModArmorMaterials implements IDummyArmorMaterials
 {
 
 	public enum ArmorMaterial implements IArmorMaterial {
-		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.VOLCANIC_INGOT, 2.0f),
-		DOMINUS("dominus", 34, new int[] { 3, 6, 8, 3 }, 26, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> TropicsItems.dominus_ingot, 3);
+		VOLCANIC("volcanic", 24, new int[] { 3, 6, 8, 3 }, 15, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> ModItems.VOLCANIC_INGOT, 2.0f),
+		DOMINUS("dominus", 34, new int[] { 3, 6, 8, 3 }, 26, () -> SoundEvents.ARMOR_EQUIP_DIAMOND, () -> ModItems.DOMINUS_INGOT, 3);
 
 		private final String name;
 		private final int durabilityMultiplier;

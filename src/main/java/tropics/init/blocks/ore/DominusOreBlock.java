@@ -1,4 +1,4 @@
-package tropics.init.blocks;
+package tropics.init.blocks.ore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,4 +1,4 @@
-package tropics.init.armor;
+package tropics.init.armor.materials;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;

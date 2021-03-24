@@ -3,13 +3,9 @@ package tropics.init.armor.volcanic;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.LazyValue;
-import net.minecraftforge.fml.DistExecutor;
-import tropics.init.armor.IDummyArmorMaterials;
-import tropics.init.items.TropicsItems;
+import tropics.init.items.ModItems;
 
 import javax.annotation.Nonnull;
 
@@ -29,13 +25,13 @@ public class ItemVolcanicArmor extends ArmorItem {
     @Nonnull
     @Override
     public final String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-        if (stack.getItem().equals(TropicsItems.volcanic_helmet) ||
-            stack.getItem().equals(TropicsItems.volcanic_chestplate) ||
-            stack.getItem().equals(TropicsItems.volcanic_boots)) {
+        if (stack.getItem().equals(ModItems.VOLCANIC_HELMET) ||
+            stack.getItem().equals(ModItems.VOLCANIC_CHESTPLATE) ||
+            stack.getItem().equals(ModItems.VOLCANIC_BOOTS)) {
                 return "tropics:textures/models/armor/volcanic_layer_1.png";
         }
 
-        else if (stack.getItem().equals(TropicsItems.volcanic_leggings)) {
+        else if (stack.getItem().equals(ModItems.VOLCANIC_LEGGINGS)) {
             return "tropics:textures/models/armor/volcanic_layer_2.png";
         }
 
