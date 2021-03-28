@@ -1,19 +1,30 @@
 package tropics.init.armor.dominus;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.LazyValue;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import tropics.init.armor.materials.IDummyArmorMaterials;
+
+import java.util.List;
 
 public class ItemDominusArmor extends ArmorItem {
 
@@ -48,5 +59,41 @@ public class ItemDominusArmor extends ArmorItem {
 	@OnlyIn(Dist.CLIENT)
 	public BipedModel<?> provideArmorModelForSlot(EquipmentSlotType slot) {
 		return new ModelArmorDominus(slot);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(new TranslationTextComponent(TextFormatting.BLUE + "Ability: Flight"));
+		tooltip.add(new TranslationTextComponent(TextFormatting.DARK_AQUA + "Use: Equip The Full Set"));
+	}
+
+	@Override
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+		ItemStack helmetArmor = player.getItemBySlot(EquipmentSlotType.HEAD);
+		ItemStack chestplateArmor = player.getItemBySlot(EquipmentSlotType.CHEST);
+		ItemStack leggingsArmor = player.getItemBySlot(EquipmentSlotType.LEGS);
+		ItemStack bootsArmor = player.getItemBySlot(EquipmentSlotType.FEET);
+
+		boolean isWearingFullSetOfDominus =
+				helmetArmor != null && helmetArmor.getItem() instanceof ItemDominusArmor &&
+				chestplateArmor != null && chestplateArmor.getItem() instanceof ItemDominusArmor &&
+				leggingsArmor != null && leggingsArmor.getItem() instanceof ItemDominusArmor &&
+				bootsArmor != null && bootsArmor.getItem() instanceof ItemDominusArmor;
+
+		if (!player.getPersistentData().contains("wearingFullDominusArmor")) {
+			player.getPersistentData().putBoolean("wearingFullDominusArmor", false);
+		}
+
+		boolean wasWearingArmorLastTick = player.getPersistentData().getBoolean("wearingFullDominusArmor");
+
+		if (!isWearingFullSetOfDominus && wasWearingArmorLastTick && !player.isCreative()) {
+			player.abilities.mayfly = false;
+			player.abilities.flying = false;
+		} else if (isWearingFullSetOfDominus) {
+			player.abilities.mayfly = true;
+		}
+
+		player.getPersistentData().putBoolean("wearingFullDominusArmor", isWearingFullSetOfDominus);
+
 	}
 }

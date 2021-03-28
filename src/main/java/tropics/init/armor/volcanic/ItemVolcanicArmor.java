@@ -1,10 +1,15 @@
 package tropics.init.armor.volcanic;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.world.World;
+import tropics.init.armor.dominus.ItemDominusArmor;
 import tropics.init.items.ModItems;
 
 import javax.annotation.Nonnull;
@@ -38,5 +43,34 @@ public class ItemVolcanicArmor extends ArmorItem {
         else {
             return "tropics:textures/models/armor/volcanic_layer_1.png";
         }
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        ItemStack helmetArmor = player.getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack chestplateArmor = player.getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack leggingsArmor = player.getItemBySlot(EquipmentSlotType.LEGS);
+        ItemStack bootsArmor = player.getItemBySlot(EquipmentSlotType.FEET);
+
+        boolean isWearingFullSetOfVolcanic =
+                helmetArmor != null && helmetArmor.getItem() instanceof ItemVolcanicArmor &&
+                chestplateArmor != null && chestplateArmor.getItem() instanceof ItemVolcanicArmor &&
+                leggingsArmor != null && leggingsArmor.getItem() instanceof ItemVolcanicArmor &&
+                bootsArmor != null && bootsArmor.getItem() instanceof ItemVolcanicArmor;
+
+        if (!player.getPersistentData().contains("wearingFullVolcanicArmor")) {
+            player.getPersistentData().putBoolean("wearingFullVolcanicArmor", false);
+        }
+
+        boolean wasWearingArmorLastTick = player.getPersistentData().getBoolean("wearingFullVolcanicArmor");
+
+        if (!isWearingFullSetOfVolcanic && wasWearingArmorLastTick && !player.isCreative()) {
+            player.removeEffect(Effects.FIRE_RESISTANCE);
+        } else if (isWearingFullSetOfVolcanic) {
+            player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE));
+        }
+
+        player.getPersistentData().putBoolean("wearingFullVolcanicArmor", isWearingFullSetOfVolcanic);
+
     }
 }
