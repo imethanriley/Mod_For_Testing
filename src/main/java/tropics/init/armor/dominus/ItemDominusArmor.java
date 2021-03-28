@@ -2,6 +2,7 @@ package tropics.init.armor.dominus;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
@@ -12,8 +13,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -61,10 +60,12 @@ public class ItemDominusArmor extends ArmorItem {
 		return new ModelArmorDominus(slot);
 	}
 
+	@ParametersAreNonnullByDefault
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(new TranslationTextComponent(TextFormatting.BLUE + "Ability: Flight"));
-		tooltip.add(new TranslationTextComponent(TextFormatting.DARK_AQUA + "Use: Equip The Full Set"));
+		tooltip.add(new TranslationTextComponent(TextFormatting.DARK_AQUA + "Ability Granted When Wearing Full Armor Set"));
 	}
 
 	@Override
@@ -75,10 +76,10 @@ public class ItemDominusArmor extends ArmorItem {
 		ItemStack bootsArmor = player.getItemBySlot(EquipmentSlotType.FEET);
 
 		boolean isWearingFullSetOfDominus =
-				helmetArmor != null && helmetArmor.getItem() instanceof ItemDominusArmor &&
-				chestplateArmor != null && chestplateArmor.getItem() instanceof ItemDominusArmor &&
-				leggingsArmor != null && leggingsArmor.getItem() instanceof ItemDominusArmor &&
-				bootsArmor != null && bootsArmor.getItem() instanceof ItemDominusArmor;
+				helmetArmor.getItem() instanceof ItemDominusArmor &&
+				chestplateArmor.getItem() instanceof ItemDominusArmor &&
+				leggingsArmor.getItem() instanceof ItemDominusArmor &&
+				bootsArmor.getItem() instanceof ItemDominusArmor;
 
 		if (!player.getPersistentData().contains("wearingFullDominusArmor")) {
 			player.getPersistentData().putBoolean("wearingFullDominusArmor", false);
