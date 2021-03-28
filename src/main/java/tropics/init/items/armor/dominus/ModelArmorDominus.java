@@ -1,4 +1,4 @@
-package tropics.init.armor.dominus;
+package tropics.init.items.armor.dominus;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 //import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
-import tropics.init.armor.materials.ModelArmor;
+import tropics.init.items.armor.materials.ModelArmor;
 
 public class ModelArmorDominus extends /*BipedModel<LivingEntity>*/ ModelArmor 
 {

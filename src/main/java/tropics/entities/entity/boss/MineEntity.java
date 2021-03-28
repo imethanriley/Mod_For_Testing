@@ -11,7 +11,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
-import tropics.init.TropicsEntities;
+import tropics.init.entity.ModEntities;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -25,7 +25,7 @@ public class MineEntity extends Entity {
     private float explosionRadius = 3.0F;
 
     public MineEntity(World worldIn) {
-        super(TropicsEntities.MINE, worldIn);
+        super(ModEntities.MINE, worldIn);
     }
 
     public MineEntity(EntityType<? extends MineEntity> entityTypeIn, World worldIn) {
@@ -33,7 +33,7 @@ public class MineEntity extends Entity {
     }
 
     public MineEntity(World worldIn, double x, double y, double z, LivingEntity casterIn){
-        this(TropicsEntities.MINE, worldIn);
+        this(ModEntities.MINE, worldIn);
         this.setCaster(casterIn);
         this.setPos(x, y, z);
         this.lifeTicks = LIFE_TICKS;

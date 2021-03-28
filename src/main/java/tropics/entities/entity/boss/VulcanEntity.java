@@ -34,7 +34,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
-import tropics.init.TropicsEntities;
+import tropics.init.entity.ModEntities;
 
 import javax.annotation.Nullable;
 
@@ -44,7 +44,7 @@ public class VulcanEntity extends AbstractRaiderEntity {
     private static final DataParameter<Boolean> SUMMONING_MINES = EntityDataManager.defineId(VulcanEntity.class, DataSerializers.BOOLEAN);
 
     public VulcanEntity(World worldIn){
-        super(TropicsEntities.VULCAN, worldIn);
+        super(ModEntities.VULCAN, worldIn);
     }
 
     public VulcanEntity(EntityType<? extends VulcanEntity> type, World worldIn) {
@@ -233,7 +233,7 @@ public class VulcanEntity extends AbstractRaiderEntity {
                         		posAboveVulcan,
                         		blockstateAboveVulcan,
                         		blockstateAboveVulcan.getFluidState(),
-                                TropicsEntities.VULCAN)) {
+                                ModEntities.VULCAN)) {
                     return false;
                 }
             }
@@ -243,7 +243,7 @@ public class VulcanEntity extends AbstractRaiderEntity {
                     		vulcanPos,
                             worldIn.getBlockState(vulcanPos),
                             Fluids.EMPTY.defaultFluidState(),
-                            TropicsEntities.VULCAN)
+                            ModEntities.VULCAN)
                     && worldIn.isUnobstructed(this);
         }
     }

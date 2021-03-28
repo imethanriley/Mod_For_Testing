@@ -3,19 +3,19 @@ package tropics.entities.renderer.passive;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
-import tropics.Tropics;
+import tropics.TestMod;
 import tropics.entities.entity.passive.PoisonDartFrogEntity;
 import tropics.entities.model.passive.PoisonDartFrogModel;
 
 public class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, PoisonDartFrogModel>  {
-	private static final ResourceLocation BLUE = Tropics.location("textures/entity/dartfrog/dart_frog_blue.png");
-	private static final ResourceLocation GREEN_TEAL_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_green_teal_spotted.png");
-	private static final ResourceLocation RED_BLACK_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_red_black_spotted.png");
-	private static final ResourceLocation ORANGE_BLACK_STRIPE = Tropics.location("textures/entity/dartfrog/dart_frog_orange_black_stripe.png");
-	private static final ResourceLocation ORANGE_WHITE_SPOTTED = Tropics.location("textures/entity/dartfrog/dart_frog_orange_white_spotted.png");
-	private static final ResourceLocation BLACK_YELLOW = Tropics.location("textures/entity/dartfrog/dart_frog_black_yellow.png");
-	private static final ResourceLocation BLACK_GREEN = Tropics.location("textures/entity/dartfrog/dart_frog_black_green.png");
-	private static final ResourceLocation BLACK_PURPLE = Tropics.location("textures/entity/dartfrog/dart_frog_black_purple.png");
+	private static final ResourceLocation BLUE = TestMod.location("textures/entity/dartfrog/dart_frog_blue.png");
+	private static final ResourceLocation GREEN_TEAL_SPOTTED = TestMod.location("textures/entity/dartfrog/dart_frog_green_teal_spotted.png");
+	private static final ResourceLocation RED_BLACK_SPOTTED = TestMod.location("textures/entity/dartfrog/dart_frog_red_black_spotted.png");
+	private static final ResourceLocation ORANGE_BLACK_STRIPE = TestMod.location("textures/entity/dartfrog/dart_frog_orange_black_stripe.png");
+	private static final ResourceLocation ORANGE_WHITE_SPOTTED = TestMod.location("textures/entity/dartfrog/dart_frog_orange_white_spotted.png");
+	private static final ResourceLocation BLACK_YELLOW = TestMod.location("textures/entity/dartfrog/dart_frog_black_yellow.png");
+	private static final ResourceLocation BLACK_GREEN = TestMod.location("textures/entity/dartfrog/dart_frog_black_green.png");
+	private static final ResourceLocation BLACK_PURPLE = TestMod.location("textures/entity/dartfrog/dart_frog_black_purple.png");
 	
 	public PoisonDartFrogRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new PoisonDartFrogModel(), 0.3F);

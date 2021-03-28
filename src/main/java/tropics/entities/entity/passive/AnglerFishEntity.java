@@ -22,7 +22,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import tropics.Tropics;
+import tropics.TestMod;
 
 public class AnglerFishEntity extends AbstractGroupFishEntity {
 	public AnglerFishEntity(EntityType<? extends AnglerFishEntity> type, World worldIn) 
@@ -69,7 +69,7 @@ public class AnglerFishEntity extends AbstractGroupFishEntity {
 	
 	@Override
 	protected ResourceLocation getDefaultLootTable() {
-		return Tropics.location("angler_fish");
+		return TestMod.location("angler_fish");
 	}
 	 
 

@@ -1,4 +1,4 @@
-package tropics.init.armor.materials;
+package tropics.init.items.armor.materials;
 
 import javax.annotation.Nonnull;
 
@@ -8,15 +8,15 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import tropics.Tropics;
+import tropics.TestMod;
 
 public interface IDummyArmorMaterials {
 
 	LazyValue<IDummyArmorMaterials> INSTANCE = new LazyValue<>(() -> {
 		try {
-			return (IDummyArmorMaterials) Class.forName("tropics.init.armor.materials.ModArmorMaterials").newInstance();
+			return (IDummyArmorMaterials) Class.forName("tropics.init.items.armor.materials.ModArmorMaterials").newInstance();
 		} catch (ReflectiveOperationException e) {
-			Tropics.LOGGER.warn("Unable to find ModArmorMaterials, using a dummy");
+			TestMod.LOGGER.warn("Unable to find ModArmorMaterials, using a dummy");
 			return new IDummyArmorMaterials() {};
 		}
 	});

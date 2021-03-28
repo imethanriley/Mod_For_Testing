@@ -16,15 +16,15 @@ import tropics.world.generation.BiomeGeneration;
 import tropics.world.generation.OreGeneration;
 
 @Mod("tropics")
-public class Tropics 
+public class TestMod
 {
-	public static Tropics instance;
+	public static TestMod instance;
 	public static final String MOD_ID = "tropics";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);	
 
 	public BiomeGeneration biomes;
 	
-	public Tropics() 
+	public TestMod()
 	{		
 		biomes = new BiomeGeneration();
 		

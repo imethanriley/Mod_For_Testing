@@ -1,4 +1,4 @@
-package tropics.init.armor.materials;
+package tropics.init.items.armor.materials;
 
 import java.util.function.Supplier;
 

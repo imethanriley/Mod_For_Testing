@@ -1,4 +1,4 @@
-package tropics.init.armor.dominus;
+package tropics.init.items.armor.dominus;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import tropics.init.armor.materials.IDummyArmorMaterials;
+import tropics.init.items.armor.materials.IDummyArmorMaterials;
 
 import java.util.List;
 

@@ -6,13 +6,13 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import tropics.Tropics;
+import tropics.TestMod;
 import tropics.entities.entity.boss.VulcanEntity;
 import tropics.entities.model.boss.VulcanModel;
 
 @OnlyIn(Dist.CLIENT)
 public class VulcanRenderer extends MobRenderer<VulcanEntity, VulcanModel<VulcanEntity>> {
-   private static final ResourceLocation TEXTURE = new ResourceLocation(Tropics.MOD_ID, "textures/entity/vulcan.png");
+   private static final ResourceLocation TEXTURE = new ResourceLocation(TestMod.MOD_ID, "textures/entity/vulcan.png");
 
    public VulcanRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new VulcanModel<>(), 1.4F);

@@ -1,4 +1,4 @@
-package tropics.init.items.materials;
+package tropics.init.items.tools.materials;
 
 import java.util.function.Supplier;
 
@@ -6,7 +6,6 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import tropics.init.items.ModItems;
-import tropics.init.items.materials.IDummyToolMaterials;
 
 public class ModToolMaterials implements IDummyToolMaterials
 {

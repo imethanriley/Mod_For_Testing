@@ -1,9 +1,9 @@
-package tropics.init.items.materials;
+package tropics.init.items.tools.materials;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
-import tropics.Tropics;
+import tropics.TestMod;
 
 import javax.annotation.Nonnull;
 
@@ -11,9 +11,9 @@ public interface IDummyToolMaterials {
 
     LazyValue<IDummyToolMaterials> INSTANCE = new LazyValue<>(() -> {
         try {
-            return (IDummyToolMaterials) Class.forName("tropics.init.armor.ModToolMaterials").newInstance();
+            return (IDummyToolMaterials) Class.forName("tropics.init.items.armor.ModToolMaterials").newInstance();
         } catch (ReflectiveOperationException e) {
-            Tropics.LOGGER.warn("Unable to find ModToolMaterials, using a dummy");
+            TestMod.LOGGER.warn("Unable to find ModToolMaterials, using a dummy");
             return new IDummyToolMaterials() {};
         }
     });

@@ -1,8 +1,6 @@
-package tropics.init.armor.dominus;
+package tropics.init.items.armor.dominus;
 
 import net.minecraft.inventory.EquipmentSlotType;
-
-import net.minecraft.item.Item.Properties;
 
 public class ItemDominusHelm extends ItemDominusArmor {
 	public ItemDominusHelm(Properties props) {

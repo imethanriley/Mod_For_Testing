@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import tropics.init.TropicsEntities;
+import tropics.init.entity.ModEntities;
 
 public class PoisonDartFrogEntity extends AnimalEntity {
 	private static final DataParameter<Integer> DART_FROG_TYPE = EntityDataManager.defineId(PoisonDartFrogEntity.class, DataSerializers.INT);
@@ -231,7 +231,7 @@ public class PoisonDartFrogEntity extends AnimalEntity {
 	}
 
 	public PoisonDartFrogEntity getBreedOffspring(ServerWorld worldIn, AgeableEntity entity) {
-		PoisonDartFrogEntity dartfrogentity = TropicsEntities.POISON_DART_FROG.create(worldIn);
+		PoisonDartFrogEntity dartfrogentity = ModEntities.POISON_DART_FROG.create(worldIn);
 	    int i = this.getRandomDartFrogType(worldIn);
 	    if (this.random.nextInt(20) != 0) {
 	    	if (entity instanceof PoisonDartFrogEntity && this.random.nextBoolean()) {

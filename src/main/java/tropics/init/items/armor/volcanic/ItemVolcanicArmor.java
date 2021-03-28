@@ -1,4 +1,4 @@
-package tropics.init.armor.volcanic;
+package tropics.init.items.armor.volcanic;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;

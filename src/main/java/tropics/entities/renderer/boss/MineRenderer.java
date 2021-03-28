@@ -11,13 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import tropics.Tropics;
+import tropics.TestMod;
 import tropics.entities.entity.boss.MineEntity;
 import tropics.entities.model.boss.MineModel;
 
 @OnlyIn(Dist.CLIENT)
 public class MineRenderer<T extends MineEntity> extends EntityRenderer<T> {
-   private static final ResourceLocation MINE_TEXTURE = new ResourceLocation(Tropics.MOD_ID, "textures/entity/mine.png");
+   private static final ResourceLocation MINE_TEXTURE = new ResourceLocation(TestMod.MOD_ID, "textures/entity/mine.png");
 
    protected final MineModel<T> mineModel = new MineModel<T>();
 

@@ -17,7 +17,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import tropics.Tropics;
+import tropics.TestMod;
 import tropics.init.blocks.ModBlocks;
 
 @Mod.EventBusSubscriber
@@ -76,6 +76,6 @@ public class OreGeneration
     
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) 
     {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Tropics.MOD_ID + ":" + name, configuredFeature);
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, TestMod.MOD_ID + ":" + name, configuredFeature);
     }
 }

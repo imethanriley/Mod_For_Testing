@@ -19,7 +19,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import tropics.init.TropicsEntities;
+import tropics.init.entity.ModEntities;
 import tropics.world.generation.BiomeGeneration;
 
 @BiomeGeneration.TropicsBiomes.NewBiome
@@ -59,9 +59,9 @@ public class TropicalIsland extends BiomeGeneration.TropicsBiomes
 	      DefaultBiomeFeatures.addMushroomFieldVegetation(GENERATION_SETTINGS);
 	      DefaultBiomeFeatures.addDefaultSprings(GENERATION_SETTINGS);
 	      
-	      SPAWN_SETTINGS.addSpawn(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.ANGLER_FISH, 1000, 3, 6));
-	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.RAVEN, 20, 2, 6));
-	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(TropicsEntities.POISON_DART_FROG, 20, 4, 8));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(ModEntities.ANGLER_FISH, 1000, 3, 6));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.RAVEN, 20, 2, 6));
+	      SPAWN_SETTINGS.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.POISON_DART_FROG, 20, 4, 8));
 	      
 	      return (new Biome.Builder()).precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(depth).scale(scale).temperature(0.9F).downfall(1.0F).specialEffects((new BiomeAmbience.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(getSkyColorWithTemperatureModifier(0.9F)).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(SPAWN_SETTINGS.build()).generationSettings(GENERATION_SETTINGS.build()).build();
   }
