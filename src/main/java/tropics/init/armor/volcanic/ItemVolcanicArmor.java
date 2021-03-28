@@ -9,19 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
-import tropics.init.armor.dominus.ItemDominusArmor;
 import tropics.init.items.ModItems;
 
 import javax.annotation.Nonnull;
 
 public class ItemVolcanicArmor extends ArmorItem {
-
-    private String[] armorTypes = new String[] {
-            "volcanic_helmet",
-            "volcanic_chestplate",
-            "volcanic_leggings",
-            "volcanic_boots"
-    };
 
     public ItemVolcanicArmor(IArmorMaterial material, EquipmentSlotType slotType, Properties properties) {
         super(material, slotType, properties);
@@ -53,10 +45,10 @@ public class ItemVolcanicArmor extends ArmorItem {
         ItemStack bootsArmor = player.getItemBySlot(EquipmentSlotType.FEET);
 
         boolean isWearingFullSetOfVolcanic =
-                helmetArmor != null && helmetArmor.getItem() instanceof ItemVolcanicArmor &&
-                chestplateArmor != null && chestplateArmor.getItem() instanceof ItemVolcanicArmor &&
-                leggingsArmor != null && leggingsArmor.getItem() instanceof ItemVolcanicArmor &&
-                bootsArmor != null && bootsArmor.getItem() instanceof ItemVolcanicArmor;
+                helmetArmor.getItem() instanceof ItemVolcanicArmor &&
+                chestplateArmor.getItem() instanceof ItemVolcanicArmor &&
+                leggingsArmor.getItem() instanceof ItemVolcanicArmor &&
+                bootsArmor.getItem() instanceof ItemVolcanicArmor;
 
         if (!player.getPersistentData().contains("wearingFullVolcanicArmor")) {
             player.getPersistentData().putBoolean("wearingFullVolcanicArmor", false);
